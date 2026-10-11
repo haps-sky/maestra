@@ -287,10 +287,10 @@ const tg=(a)=>a;
 const ps=(x,y)=>`<span class="pill ${x?'ok':'no'}">${y}</span>`;
 const CK='✓';
 let qi=0,sc=0;
-let picked=[];
-function quizHtml(){picked=[];sc=0;return `<div class="quizbar"><span class="score" id="sc">Skor: 0 / ${QS.length}</span><div style="display:flex;gap:8px"><button class="btn secondary" onclick="refreshQuiz()">Ulangi</button><button class="btn" onclick="shuffleQuiz()">Acak soal</button></div></div>`+QS.map((q,i)=>`<div class="qcard" id="qc${i}"><div class="qnum">Soal ${i+1}</div><div class="qtext">${q[0]}</div>${q[1].map((t,j)=>`<button class="opt" onclick="pick(${i},${j})">${t}</button>`).join('')}<div class="explain" id="ex${i}">${q[3]}</div></div>`).join('')}
-function pick(i,j){const q=QS[i];if(picked[i]!==undefined)return;picked[i]=j;const bs=document.querySelectorAll('#qc'+i+' .opt');bs.forEach((b,k)=>{b.disabled=true;if(k===q[2])b.classList.add('correct')});if(j===q[2])sc++;else bs[j].classList.add('wrong');document.getElementById('ex'+i).classList.add('show');document.getElementById('sc').textContent='Skor: '+sc+' / '+QS.length;}
-function refreshQuiz(){document.querySelector('.pane').innerHTML=quizHtml();}
+let picked=[],QSTATE={},curK='';
+function quizHtml(){const sv=QSTATE[curK]||(QSTATE[curK]={});picked=[];sc=0;QS.forEach((q,i)=>{if(sv[q[0]]!==undefined){picked[i]=sv[q[0]];if(sv[q[0]]===q[2])sc++}});return `<div class="quizbar"><span class="score" id="sc">Skor: ${sc} / ${QS.length}</span><div style="display:flex;gap:8px"><button class="btn secondary" onclick="refreshQuiz()">Ulangi</button><button class="btn" onclick="shuffleQuiz()">Acak soal</button></div></div>`+QS.map((q,i)=>`<div class="qcard" id="qc${i}"><div class="qnum">Soal ${i+1}</div><div class="qtext">${q[0]}</div>${q[1].map((t,j)=>`<button class="opt${picked[i]!==undefined?(j===q[2]?' correct':(j===picked[i]?' wrong':'')):''}"${picked[i]!==undefined?' disabled':''} onclick="pick(${i},${j})">${t}</button>`).join('')}<div class="explain${picked[i]!==undefined?' show':''}" id="ex${i}">${q[3]}</div></div>`).join('')}
+function pick(i,j){const q=QS[i];if(picked[i]!==undefined)return;picked[i]=j;QSTATE[curK][q[0]]=j;const bs=document.querySelectorAll('#qc'+i+' .opt');bs.forEach((b,k)=>{b.disabled=true;if(k===q[2])b.classList.add('correct')});if(j===q[2])sc++;else bs[j].classList.add('wrong');document.getElementById('ex'+i).classList.add('show');document.getElementById('sc').textContent='Skor: '+sc+' / '+QS.length;}
+function refreshQuiz(){QSTATE[curK]={};document.querySelector('.pane').innerHTML=quizHtml();}
 function shuffleQuiz(){QS=QS.slice();for(let k=QS.length-1;k>0;k--){const m=Math.floor(Math.random()*(k+1));[QS[k],QS[m]]=[QS[m],QS[k]];}refreshQuiz();}
 let QS=[],ES=[];
 function esHtml(){return ES.map((e,i)=>`<details class="card"><summary><b>Esai ${i+1}.</b> ${e[0]}</summary><div class="callout">${e[1]}</div></details>`).join('')}
@@ -669,7 +669,7 @@ function renderNav(){let h='<div class="navgroup-label">Sesi (urutan RPKPS)</div
 function selectTopic(n){cur=n;tab='mat';qi=0;sc=0;renderNav();renderMain();window.scrollTo(0,0);if(isMobile())closeNavMobile();}
 function setTab(t){tab=t;renderMain();}
 function renderMain(){const s=SES.find(x=>x[0]===cur);if(s[2]==='x'){document.getElementById('main').innerHTML=`<div class="topic-head"><div class="kicker">Sesi ${cur}</div><h1>${s[1]}</h1></div><div class="comingsoon" style="margin-top:20px"><div class="big">Belum dibuat</div>Materi sesi ini menyusul.</div>`;return;}
-const k=s[2],c=CONTENT[k];QS=SETS[k].q;ES=SETS[k].e;if(k==='s7')tab='lat';const tabs=k==='s7'?[['lat','Latihan']]:[['mat','Materi'],['lat','Latihan'],['es','Esai']];
+const k=s[2],c=CONTENT[k];curK=k;QS=SETS[k].q;ES=SETS[k].e;if(k==='s7')tab='lat';const tabs=k==='s7'?[['lat','Latihan']]:[['mat','Materi'],['lat','Latihan'],['es','Esai']];
 document.getElementById('main').innerHTML=`<div class="topic-head"><div class="kicker">${c.kicker}</div><h1>${c.title}</h1><p>${c.desc}</p></div><div class="tabs">${tabs.map(t=>`<div class="tab ${tab===t[0]?'active':''}" onclick="setTab('${t[0]}')">${t[1]}</div>`).join('')}</div><div class="pane active">${tab==='mat'?c.materi:tab==='es'?esHtml():quizHtml()}</div><div class="footer-note">SML Hub · AKU6210 · PPAk FEB UGM · Referensi: ${REF[k]}</div>`;}
 function isMobile(){return window.innerWidth<=800;}
 function toggleNav(){const s=document.getElementById('sidebar'),b=document.getElementById('navtoggle'),bd=document.getElementById('backdrop');if(isMobile()){const o=s.classList.toggle('mobile-open');bd.classList.toggle('show',o);b.classList.toggle('open',o);}else{const c=s.classList.toggle('collapsed');b.classList.toggle('open',!c);}}
