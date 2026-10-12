@@ -407,6 +407,22 @@ html,body{overflow-x:hidden}.card td,.card th{overflow-wrap:normal;word-break:no
 .atk-b{overflow:hidden}
 
 /* Latihan tebak faktor */
+.mtc{background:#FDF5F7;border:2px solid #E6C6D1;border-radius:14px;padding:14px;color:var(--ink)}
+.mtc-top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;color:#9A5468;margin-bottom:10px}
+.mtc-re{appearance:none;background:#fff;border:1px solid #D9AEBB;border-radius:6px;padding:2px 10px;font-family:var(--mono);font-size:11px;color:#7A394D;cursor:pointer}.mtc-re:hover{border-color:var(--gold)}
+.mtc-hint{font-size:12.5px;margin:0 0 8px;color:#6B3A4A}
+.mtc-pool{display:flex;flex-direction:column;gap:7px;margin-bottom:12px}
+.mtc-card{appearance:none;-webkit-appearance:none;text-align:left;background:#fff;border:2px solid #E6C6D1;border-radius:10px;padding:9px 11px;font-family:var(--sans);font-size:13px;line-height:1.4;color:var(--ink);cursor:pointer;transition:border-color .15s,transform .15s}
+.mtc-card:hover{border-color:var(--gold)}.mtc-card.sel{border-color:var(--gold);background:#FFF4E0;transform:translateX(4px)}
+.mtc-card.no{background:#FCE4E4;border-color:#D9707A;animation:alqShake .35s}
+.mtc-bk{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.mtc-b{appearance:none;-webkit-appearance:none;text-align:left;background:#F6E6EB;border:2px dashed #D9AEBB;border-radius:10px;padding:8px;min-height:92px;font-family:var(--sans);color:var(--ink);cursor:pointer}
+.mtc-b.ready:hover{border-color:var(--gold);background:#FFF4E0}
+.mtc-b b{display:block;font-family:var(--disp);font-size:13px}.mtc-b small{display:block;font-size:11px;color:#8A4D60;margin-bottom:6px}
+.mtc-b i{display:block;font-style:normal;background:#E4F5E8;border:1px solid #5BAE74;border-radius:7px;padding:5px 7px;font-size:11.5px;line-height:1.35;margin-top:5px}
+.mtc-res{text-align:center;padding:10px 4px}.mtc-res .big{font-family:var(--disp);font-size:28px;font-weight:700}
+.mtc-btn{appearance:none;background:var(--maroon);color:#fff;border:0;border-radius:8px;padding:8px 14px;font-family:var(--sans);font-size:13px;cursor:pointer;margin-top:8px}
+@media(max-width:560px){.mtc-bk{grid-template-columns:1fr}.mtc-b{min-height:0}}
 .alq{background:#FDF5F7;border:2px solid #E6C6D1;border-radius:14px;padding:14px 14px 12px}
 .alq-top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;color:#9A5468;margin-bottom:8px}
 .alq-bar{height:7px;background:#F0DDE4;border-radius:6px;overflow:hidden;flex:1;max-width:200px}.alq-bar i{display:block;height:100%;background:var(--gold);border-radius:6px;transition:width .4s}
@@ -966,6 +982,26 @@ const ok=i===c.a;if(ok)alqScore++;else alqMiss.push(c.a);
 document.getElementById('alq-fb').innerHTML=`<div class="alq-fb ${ok?'ok':'no'}"><b>${ok?'Benar!':'Belum tepat.'}</b> ${ok?'':'Jawabannya <b>'+ALQ_O[c.a][1]+'</b>. '}${c.e}</div><button type="button" class="alq-next" onclick="alqNext()">${alqI===ALQ.length-1?'Lihat hasil':'Kasus berikutnya'}</button>`}
 function alqNext(){alqI++;alqRender()}
 function alqReset(){alqI=0;alqScore=0;alqMiss=[];alqRender()}
+const MTC_B=[['National','beda negara'],['Scale','bikin besar'],['Scope','berbagi sumber daya']];
+const MTC_C=[
+['Software dikerjakan di India karena tenaga ahli lebih murah daripada di AS',0],
+['Pabrik dipindah ke negara dengan upah lebih rendah',0],
+['Satu pabrik besar membuat bumbu untuk semua cabang',1],
+['Produksi diperbesar supaya biaya per unit turun',1],
+['Satu dapur pusat memasok ayam geprek, ayam bakar, dan ayam penyet',2],
+['Satu platform mobil dipakai banyak model',2]];
+let mtcPool=[],mtcPut=[[],[],[]],mtcSel=-1,mtcMiss=0,mtcBad=-1;
+function mtcReset(){mtcPool=MTC_C.map((_,i)=>i).sort(()=>Math.random()-.5);mtcPut=[[],[],[]];mtcSel=-1;mtcMiss=0;mtcBad=-1;mtcRender()}
+function mtcHTML(){
+if(!mtcPool.length)return `<div class="mtc-res"><div class="big">${mtcMiss===0?'Sempurna!':'Selesai!'}</div><div>${mtcMiss===0?'Semua cocok tanpa salah.':'Salah pilih '+mtcMiss+' kali. Coba lagi sampai tanpa salah.'}</div><button type="button" class="mtc-btn" onclick="mtcReset()">Main lagi</button></div>`;
+return `<div class="mtc-top"><span>Cocok ${MTC_C.length-mtcPool.length}/${MTC_C.length}</span><span>Salah ${mtcMiss}</span><button type="button" class="mtc-re" onclick="mtcReset()">Ulang</button></div>
+<p class="mtc-hint">${mtcSel<0?'1) Ketuk satu kartu contoh.':'2) Ketuk kotak yang cocok.'}</p>
+<div class="mtc-pool">${mtcPool.map(i=>`<button type="button" class="mtc-card${i===mtcSel?' sel':''}${i===mtcBad?' no':''}" onclick="mtcPick(${i})">${MTC_C[i][0]}</button>`).join('')}</div>
+<div class="mtc-bk">${MTC_B.map((b,k)=>`<button type="button" class="mtc-b${mtcSel>=0?' ready':''}" onclick="mtcDrop(${k})"><b>${b[0]}</b><small>${b[1]}</small>${mtcPut[k].map(i=>`<i>${MTC_C[i][0]}</i>`).join('')}</button>`).join('')}</div>`}
+function mtcRender(){const el=document.getElementById('mtc');if(el)el.innerHTML=mtcHTML()}
+function mtcPick(i){mtcSel=mtcSel===i?-1:i;mtcBad=-1;mtcRender()}
+function mtcDrop(k){if(mtcSel<0)return;const i=mtcSel;if(MTC_C[i][1]===k){mtcPut[k].push(i);mtcPool=mtcPool.filter(x=>x!==i);mtcSel=-1;mtcBad=-1}else{mtcMiss++;mtcBad=i;mtcSel=-1}mtcRender()}
+function MTCVIS(){mtcPool=MTC_C.map((_,i)=>i).sort(()=>Math.random()-.5);mtcPut=[[],[],[]];mtcSel=-1;mtcMiss=0;mtcBad=-1;return `<div class="vz">${VZH('Game: pasangkan kartu <span class="vz-s">ketuk kartu, lalu ketuk kotaknya</span>')}<div class="mtc" id="mtc">${mtcHTML()}</div></div>`}
 function ALQVIS(){alqI=0;alqScore=0;alqMiss=[];return `<div class="vz">${VZH('Latihan: tebak faktornya <span class="vz-s">8 kasus · pilih satu faktor</span>')}<div class="alq" id="alq">${alqHTML()}</div></div>`}
 function ATKVIS(){atkSeen=new Set();
 const tgt=`<div class="atk-tgt"><b class="atk-th">${ico('bullseye',24)} Target terbaik</b><ul><li>Market leader yang posisinya rentan</li><li>Runner-up dengan kelemahan di area kekuatan penyerang</li><li>Perusahaan kesulitan dan hampir bangkrut</li><li>Perusahaan lokal atau regional kecil</li></ul></div>`;
@@ -1123,7 +1159,7 @@ function emSet(c,k,r){document.getElementById('em-c').value=c;document.getElemen
 function EMVIS(){const cards=EM.map((e,j)=>`<div class="em-card${j===2?' on':''}"><span class="vc-ic">${ico(e.ic,34)}</span><span class="vc-n">${e.n}</span></div>`).join('');
 return `<div class="vz">${VZH('Pilih cara masuk <span class="vz-s">atur komitmen, kontrol, dan persepsi risiko</span>')}<div class="em-track"><div class="upp-m" id="em-m" style="left:62.5%">${ico('snack',34)}</div></div><div class="em-row">${cards}</div>
 <div class="tc-ctl"><label>Komitmen sumber daya yang bersedia diberikan <b id="em-cv">50</b><input type="range" id="em-c" min="0" max="100" value="50" oninput="emUpd()"></label><label>Kontrol atas operasi internasional yang dibutuhkan <b id="em-kv">50</b><input type="range" id="em-k" min="0" max="100" value="50" oninput="emUpd()"></label><label>Persepsi risiko internasional <span class="vz-s">(general environment, industry, firm-specific)</span> <b id="em-rv">40</b><input type="range" id="em-r" min="0" max="100" value="40" oninput="emUpd()"></label></div>
-<div class="tc-pre"><span>Coba skenario:</span><button type="button" onclick="emSet(20,20,40)">Mulai kecil</button><button type="button" onclick="emSet(90,90,30)">Kontrol penuh, dana besar</button><button type="button" onclick="emSet(85,90,85)">Kontrol penuh, pasar berisiko</button><button type="button" onclick="emSet(25,80,50)">Dana kecil, mau kontrol</button></div>
+<div class="tc-pre"><span>Coba skenario:</span><button type="button" onclick="emSet(20,20,40)">Mulai kecil</button><button type="button" onclick="emSet(90,90,30)">Kontrol penuh, dana besar</button><button type="button" onclick="emSet(85,90,85)">Kontrol penuh, pasar berisiko</button><button type="button" onclick="emSet(30,50,50)">Dana kecil, kontrol sedang</button><button type="button" onclick="emSet(25,80,50)">Dana kecil, kontrol tinggi</button></div>
 <div class="tc-v" id="em-d" style="margin-top:12px">${emHTML(2,'')}</div><div class="ans-leg">Ambang angka hanya ilustrasi. Yang dari Henry: pilihan ditentukan komitmen sumber daya dan kontrol, makin besar kontrol makin besar risiko, dan persepsi risiko tinggi bisa dibagi lewat JV atau franchise.</div></div>`}
 
 /* --- C. Porter's diamond --- */
@@ -1424,6 +1460,13 @@ P("<b>MNE</b> adalah organisasi yang punya kegiatan produktif di dua negara atau
 "<b>Efisiensi</b> adalah rasio nilai output terhadap biaya semua input. Diferensiasi menaikkan nilai output (harga premium), sedangkan faktor biaya rendah menurunkan biaya input.",
 "<b>Risiko</b> ada empat jenis: makroekonomi (misalnya konflik militer), politik (keputusan pemerintah), kompetitif (reaksi pesaing), dan sumber daya (tidak punya atau tidak bisa memperoleh resources, misalnya teknologi).",
 "<b>Pembelajaran</b> muncul bila menjadi tujuan organisasi yang didukung manajemen senior lewat sistem dan proses, dan meresap di budaya."])
++FULL("Versi singkat: tiga sumber keunggulan",
+T(["Sumber","Artinya","Contoh"],[
+["<b>National</b> (negara)","Manfaatkan beda biaya antarnegara","Software dikerjakan di India karena tenaga ahli lebih murah"],
+["<b>Scale</b> (jumlah)","Produksi diperbesar, biaya per unit turun","Bumbu ayam geprek dibuat di satu pabrik besar"],
+["<b>Scope</b> (cakupan)","Satu sumber daya dipakai banyak produk","Satu dapur pusat memasok ayam geprek, bakar, dan penyet"]
+])+P("Contoh ayam hanya ilustrasi, bukan dari Henry."))
++MTCVIS()
 +DEF("Contoh tiap sumber keunggulan","<b>National differences:</b> biaya insinyur software di India jauh lebih murah daripada di AS, Inggris, atau Eropa. <b>Scale economies:</b> experience curve dan minimum efficient scale (skala produksi terkecil yang sudah membuat biaya per unit serendah mungkin). <b>Scope economies:</b> platform mobil bersama yang dipakai banyak model.","Klaster pemasok (kumpulan perusahaan pemasok yang berdekatan) seperti Silicon Valley atau Wuhan, rumah Foxconn, pemasok Apple dan Xiaomi. Wuhan terganggu COVID-19 pada 2020, sehingga banyak perusahaan menimbang on-shoring (memindahkan produksi kembali ke negara asal).")),
 
 C("Empat tipe international strategy",
