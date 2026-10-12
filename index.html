@@ -252,6 +252,7 @@ html,body{overflow-x:hidden}.card td,.card th{overflow-wrap:normal;word-break:no
 .ans{margin:6px 0 2px}
 .ans-grid{display:grid;grid-template-columns:76px 1fr 1fr;gap:8px;align-items:stretch}
 .ans-corner{font-family:var(--mono);font-size:10px;color:#9A5468;line-height:1.4;display:flex;align-items:flex-end;justify-content:center;text-align:center;padding-bottom:6px}
+.ans-hint{display:inline-block;background:#FFF3DA;border:1.5px solid var(--gold);color:#7A394D;font:700 12px var(--mono);padding:6px 14px;border-radius:20px;margin:16px 0 0;box-shadow:0 0 0 3px var(--gold-soft)}
 .ans-ax{font-family:var(--mono);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:#7A394D;text-align:center;padding:6px 4px;display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap}
 .ans-ax.side{font-size:10.5px;flex-direction:column;gap:4px}
 .nw{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.08em;background:var(--gold);color:#241a06;border-radius:20px;padding:2px 7px;display:inline-block;animation:ansPulse 1.8s ease-in-out infinite}
@@ -277,7 +278,7 @@ html,body{overflow-x:hidden}.card td,.card th{overflow-wrap:normal;word-break:no
 .ans-leg{font-size:12.5px;color:#6b4a56;margin:12px 2px 0;line-height:1.6}
 .ans-detail{margin-top:14px;background:#FDF5F7;border:1px solid #EBCFD8;border-left:4px solid var(--gold);border-radius:10px;padding:14px 16px}
 .ans-details{display:flex;flex-direction:column;gap:12px;margin-top:14px}.ans-details .ans-detail{margin-top:0;scroll-margin-top:12px}.ans-detail.hl{animation:ansIn .35s ease;box-shadow:0 0 0 3px var(--gold-soft)}
-.ans-detail.flip{animation:ansIn .35s ease}
+.ans-detail.flip{animation:ansIn .35s ease}.ans-detail[hidden]{display:none}.ans-details{margin-top:16px}.ans-details:not(:has(.ans-detail:not([hidden]))){margin-top:0}
 @keyframes ansIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 .ans-dh{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:6px}
 .ans-dh b{font-family:var(--disp);font-size:16px;color:var(--ink)}
@@ -303,7 +304,7 @@ html,body{overflow-x:hidden}.card td,.card th{overflow-wrap:normal;word-break:no
 .vz-s{font-family:var(--mono);font-weight:400;font-size:10.5px;color:#9A5468;margin-left:6px}
 .vz-full{margin-top:14px}.vz-full>summary{cursor:pointer;font-family:var(--mono);font-size:12px;color:#7A394D;padding:8px 0}
 .atk-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.ico{display:block;overflow:visible}
-.atk-card{appearance:none;-webkit-appearance:none;border:0;background:none;padding:0;height:176px;perspective:800px;min-width:0;cursor:pointer;font-family:var(--sans);color:var(--ink)}
+.atk-card{appearance:none;-webkit-appearance:none;border:0;background:none;padding:0;height:214px;perspective:800px;min-width:0;cursor:pointer;font-family:var(--sans);color:var(--ink)}
 .atk-in{position:relative;display:block;width:100%;height:100%;transition:transform .55s;transform-style:preserve-3d}
 .atk-card.flip .atk-in{transform:rotateY(180deg)}
 .atk-f,.atk-b{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:12px;border:2px solid #E6C6D1;background:#fff;padding:10px;display:flex;flex-direction:column;gap:5px}
@@ -314,7 +315,7 @@ html,body{overflow-x:hidden}.card td,.card th{overflow-wrap:normal;word-break:no
 .atk-h{font-family:var(--mono);font-size:9px;color:#9A5468}
 .atk-b{transform:rotateY(180deg);background:#FFF3DA;border-color:var(--gold);text-align:left;font-size:11.5px;line-height:1.45;overflow:auto;justify-content:flex-start}
 .atk-b b{font-family:var(--disp);font-size:12.5px}.atk-b em{font-style:normal;color:#6b4a56}
-.atk-tgt{border:2px dashed var(--gold);border-radius:12px;padding:10px 12px;background:#FDF5F7;font-size:11.5px;line-height:1.4;height:176px;overflow:auto;min-width:0}
+.atk-tgt{border:2px dashed var(--gold);border-radius:12px;padding:10px 12px;background:#FDF5F7;font-size:11.5px;line-height:1.4;height:214px;overflow:auto;min-width:0}
 .atk-th{display:flex;align-items:center;gap:6px;font-family:var(--disp);font-size:12.5px}
 .atk-tgt ul,.lay-c ul{margin:6px 0 0;padding-left:16px;list-style:disc}.atk-tgt li,.lay-c li{font-size:11.5px;line-height:1.4;margin:0 0 4px;padding:0}
 .sc-track{position:relative;height:120px;background:#FDF5F7;border:1px solid #EBCFD8;border-radius:10px;overflow:hidden}
@@ -328,12 +329,12 @@ html,body{overflow-x:hidden}.card td,.card th{overflow-wrap:normal;word-break:no
 .sc[data-st="strong"] .sc-actor,.sc[data-st="cred"] .sc-actor{animation:scBounce 1.6s ease both}
 .sc[data-st="weak"] .sc-actor,.sc[data-st="bluff"] .sc-actor{animation:scPass 1.6s ease both}
 .sc[data-st="strong"] .w-top{animation:scShake .4s .7s}.sc[data-st="cred"] .sh{animation:scShake .4s .7s}
-.sc[data-st="weak"] .sc-tgt,.sc[data-st="bluff"] .sc-tgt{animation:scHit .5s 1.5s both;filter:drop-shadow(0 0 8px #E08A6B)}
+.sc[data-st="weak"] .sc-tgt,.sc[data-st="bluff"] .sc-tgt{animation:scHit .5s 1.5s both}
 .sc[data-st="bluff"] .sh{opacity:.3;filter:grayscale(1)}
 @keyframes scBounce{0%{left:6%}45%{left:34%}55%{left:34%;transform:rotate(-12deg)}100%{left:6%;transform:none}}
 @keyframes scPass{0%{left:6%}100%{left:78%}}
 @keyframes scShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-3px)}75%{transform:translateX(3px)}}
-@keyframes scHit{0%{transform:scale(1)}50%{transform:scale(1.5)}100%{transform:scale(1.15)}}
+@keyframes scHit{0%{transform:scale(1);filter:none}50%{transform:scale(1.5);filter:drop-shadow(0 0 8px #E08A6B)}100%{transform:scale(1.15);filter:drop-shadow(0 0 8px #E08A6B)}}
 .sc-btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
 .sc-btn,.vc-btn,.tc-pre button{appearance:none;-webkit-appearance:none;border:1.5px solid #E6C6D1;background:#fff;color:var(--ink);font:12px var(--sans);padding:7px 11px;border-radius:20px;cursor:pointer;transition:border-color .15s,background .15s}
 .sc-btn:hover,.vc-btn:hover,.tc-pre button:hover{border-color:var(--gold)}
@@ -366,12 +367,12 @@ html,body{overflow-x:hidden}.card td,.card th{overflow-wrap:normal;word-break:no
 @keyframes vcGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 .vc-cap{font-size:13px;line-height:1.6;background:#FDF5F7;border-left:4px solid var(--gold);border-radius:8px;padding:10px 12px}
 .vc-cap .eg{margin-top:6px}
-.tc-beamwrap{position:relative;height:120px;margin:4px 0 6px}
-.tc-beam{position:absolute;left:8%;right:8%;top:22px;height:50px;transform:rotate(var(--a));transition:transform .6s cubic-bezier(.3,1.4,.5,1)}
+.tc-beamwrap{position:relative;height:210px;margin:4px 0 6px}
+.tc-beam{position:absolute;left:20%;right:20%;top:50px;height:50px;transform:rotate(var(--a));transition:transform .6s cubic-bezier(.3,1.4,.5,1)}
 .tc-bar{position:absolute;left:0;right:0;top:0;height:5px;background:#7A394D;border-radius:4px}
 .tc-pan{position:absolute;top:8px;width:94px;margin-left:-47px;text-align:center;font-size:12px;line-height:1.3;background:#fff;border:2px solid #E6C6D1;border-radius:10px;padding:6px 4px;transform:rotate(calc(var(--a) * -1));transition:transform .6s cubic-bezier(.3,1.4,.5,1)}
 .tc-pan.l{left:0}.tc-pan.r{left:100%}.tc-pan b{font:700 16px var(--disp)}
-.tc-pivot{position:absolute;left:50%;top:22px;margin-left:-14px;border-left:14px solid transparent;border-right:14px solid transparent;border-bottom:40px solid #B07A8A;transform:translateY(0)}
+.tc-pivot{position:absolute;left:50%;top:50px;margin-left:-14px;border-left:14px solid transparent;border-right:14px solid transparent;border-bottom:40px solid #B07A8A;transform:translateY(0)}
 .tc-ctl{display:flex;flex-direction:column;gap:10px;margin-top:6px}
 .tc-ctl label{font-size:12.5px;line-height:1.4;display:block}.tc-ctl label>b{float:right;font-family:var(--mono)}
 .tc-ctl input[type=range]{width:100%;accent-color:#C98A3A;margin-top:4px}
@@ -379,7 +380,9 @@ html,body{overflow-x:hidden}.card td,.card th{overflow-wrap:normal;word-break:no
 .tc-pre{display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin-top:10px}.tc-pre span{font:10.5px var(--mono);color:#9A5468}
 .tc-v{margin-top:10px;background:#FDF5F7;border:1px solid #EBCFD8;border-left:5px solid var(--gold);border-radius:10px;padding:10px 14px;transition:border-color .3s}
 .tc-v b{font:600 15px var(--disp)}.tc-v p{margin:4px 0 0;font-size:13px;line-height:1.55}
-@media(max-width:560px){.lay{grid-template-columns:1fr}.atk-grid{grid-template-columns:repeat(2,1fr)}.atk-card,.atk-tgt{height:200px}.vc-grp>span{width:100%}.vc-n{font-size:9.5px}.vc-ic .ico{width:28px;height:28px}.tc-pan{width:78px;margin-left:-39px;font-size:11px}}
+@media(max-width:1000px){.atk-grid{grid-template-columns:repeat(2,1fr)}.atk-card,.atk-tgt{height:250px}}
+@media(max-width:560px){.lay{grid-template-columns:1fr}.atk-grid{grid-template-columns:repeat(2,1fr)}.atk-card,.atk-tgt{height:250px}.vc-grp>span{width:100%}.vc-n{font-size:9.5px}.vc-ic .ico{width:28px;height:28px}.tc-pan{width:78px;margin-left:-39px;font-size:11px}}
+@media(max-width:360px){.atk-card,.atk-tgt{height:300px}}
 @media(prefers-reduced-motion:reduce){.atk-in,.tc-beam,.tc-pan{transition:none}.atk-ic .ico,.sc-actor,.sc-tgt,.w-top,.sh,.vc-arrow,.vc-comp,.vc-dn,.vc-box.big{animation:none!important}}
 /* Uppsala, FM, aksi ikon */
 .upp-st{position:relative;height:196px;display:flex;align-items:flex-end;gap:5px;border-bottom:3px solid #E6C6D1}
@@ -440,6 +443,66 @@ html,body{overflow-x:hidden}.card td,.card th{overflow-wrap:normal;word-break:no
 .pd-n{font:600 10px/1.2 var(--disp);text-align:center}
 @media(max-width:560px){.intl-grid{grid-template-columns:50px 1fr 1fr;gap:6px}.intl-pm{grid-template-columns:1fr}.em-card .vc-n{font-size:9px}.pd-node{min-width:78px;padding:5px 2px}.pd-n{font-size:9px}.pd-core{width:64px;height:64px;font-size:9px}.em-card .ico{width:28px;height:28px}}
 @media(prefers-reduced-motion:reduce){.nf,.pd-l.hot,.intl-cell.on .intl-ic .ico{animation:none}}
+/* ===== Visual Sesi 1-4 (kustom) ===== */
+.ff-stage{position:relative;width:100%;max-width:460px;aspect-ratio:1/1;margin:6px auto 4px;background:#FDF5F7;border:1px solid #EBCFD8;border-radius:16px}
+.ff-cake{position:absolute;inset:0;width:100%;height:100%}
+.ff-w{transform-origin:100px 100px;transition:transform .5s cubic-bezier(.3,1.4,.5,1);stroke:#7A394D;stroke-width:1.5;stroke-linejoin:round}
+.ff-c{appearance:none;-webkit-appearance:none;position:absolute;transform:translate(-50%,-50%);width:24%;min-width:68px;background:#fff;border:2px solid #E6C6D1;border-radius:12px;padding:5px 2px;display:flex;flex-direction:column;align-items:center;gap:1px;cursor:pointer;color:var(--ink);font-family:var(--sans);transition:left .55s cubic-bezier(.3,1.5,.5,1),top .55s cubic-bezier(.3,1.5,.5,1),border-color .2s,box-shadow .2s}
+.ff-c:hover{border-color:var(--gold)}.ff-c.sel{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-soft)}
+.ff-n{font:600 10px/1.15 var(--disp);text-align:center}.ff-lv{font:700 9px var(--mono);letter-spacing:.04em;text-transform:uppercase}
+.ff-c.l2 .ico{animation:ffChomp .7s ease-in-out infinite}
+@keyframes ffChomp{0%,100%{transform:translate(0,0)}50%{transform:translate(var(--dx),var(--dy)) scale(1.12)}}
+.ff-pct{display:flex;align-items:center;gap:10px;margin-top:8px;font-size:12.5px}.ff-pct b{font:700 22px var(--disp);min-width:62px}.ff-pct .ans-bar{flex:1}
+.ff-pct .ans-bar>i{animation:none;transition:width .5s,background .3s}
+.lc-chips{display:flex;gap:6px;flex-wrap:wrap;margin:2px 0 8px}
+.lc-chip{appearance:none;-webkit-appearance:none;border:1.5px solid #E6C6D1;background:#fff;color:var(--ink);font:11.5px var(--sans);padding:6px 11px;border-radius:20px;cursor:pointer;transition:background .2s,border-color .2s}
+.lc-chip.on{background:#FFE3A8;border-color:var(--gold);font-weight:700}
+.lc-plaza{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px;margin:8px 0}
+.lc-s{aspect-ratio:1/.62;display:flex;align-items:center;justify-content:center;border-radius:10px;border:1.5px dashed #E6C6D1;background:#FBF3F6}
+.lc-s span{line-height:0;opacity:0;transform:scale(.2);transition:opacity .35s,transform .45s cubic-bezier(.3,1.7,.5,1),filter .4s}
+.lc-s.on span{opacity:1;transform:none}
+.lc-s svg{width:72%;max-width:34px;height:auto}
+.lc-plaza.dec .lc-s.on span{filter:grayscale(.85)}
+.lc-pm{position:relative;height:12px;background:#F0DDE4;border-radius:6px;overflow:hidden}
+.lc-pm i{position:absolute;top:0;bottom:0;border-radius:6px;transition:left .15s,width .15s,background .3s}
+.lc-pm u{position:absolute;left:50%;top:-2px;bottom:-2px;width:2px;background:#7A394D}
+.vr-track{position:relative;height:128px;background:#FDF5F7;border:1px solid #EBCFD8;border-radius:12px;overflow:hidden}
+.vr-ground{position:absolute;left:0;right:0;bottom:0;height:10px;background:#F0DDE4;border-top:2px solid #E6C6D1}
+.vr-cols{position:absolute;inset:0 0 10px;display:grid;grid-template-columns:repeat(4,1fr);align-items:end}
+.vr-gate{width:38px;height:92px;margin:0 auto;border-radius:19px 19px 0 0;border:3px solid #3c9d68;border-bottom:0;background:rgba(111,207,151,.14);display:flex;justify-content:center;padding-top:12px;font:700 15px var(--disp);color:#24704a;transition:all .35s}
+.vr-gate.no{border-color:#8E2B3C;background:#8E2B3C;color:#fff}
+.vr-gate.dim{opacity:.35}
+.vr-gate.pass{background:transparent;border-style:dashed;color:#9A5468}
+.vr-gate.hit{animation:scShake .4s 2}
+.vr-ball{position:absolute;bottom:12px;left:2%;width:34px;height:34px;transform:translateX(-50%);transition:left .65s ease-in-out;z-index:2}
+.vr-ball svg{display:block}.vr-ball circle.bb{fill:var(--bc,#E3C3CE);transition:fill .3s}
+.vr-ball.roll svg{animation:vrRoll .65s linear}
+.vr-ball.bump svg{animation:uppHop .5s ease 2}
+.vr-ball.win svg{animation:aGlow 1s ease-in-out infinite}
+@keyframes vrRoll{to{transform:rotate(360deg)}}
+.vr-fin{position:absolute;right:6px;top:8px;line-height:0;opacity:.25;transition:opacity .4s,transform .4s}
+.vr-fin.on{opacity:1;animation:aBurst 1s ease-in-out infinite}
+.vr-ctl{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin-top:8px}
+.vr-q{font:600 11px/1.3 var(--disp);text-align:center}.vr-q span{display:block;font:400 10.5px/1.3 var(--sans);color:#6b4a56;margin-top:2px}
+.vr-tg{display:flex;gap:4px;justify-content:center;margin-top:5px}
+.vr-tg button{appearance:none;-webkit-appearance:none;border:1.5px solid #E6C6D1;background:#fff;font:11px var(--sans);padding:4px 9px;border-radius:14px;cursor:pointer;color:var(--ink)}
+.vr-tg button.on.y{background:#CDEBD8;border-color:#3c9d68;font-weight:700}.vr-tg button.on.n{background:#F9D4CB;border-color:#8E2B3C;font-weight:700}
+.ec-svg,.bo-svg,.lc-svg{display:block;width:100%;max-width:640px;margin:0 auto;height:auto;background:#FDF5F7;border:1px solid #EBCFD8;border-radius:10px}
+.ec-rate{display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin:8px 0}.ec-rate>span{font:10.5px var(--mono);color:#9A5468}
+.ec-co{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0}
+.ec-c{border:1.5px solid #E6C6D1;border-radius:10px;background:#fff;padding:8px 10px;font-size:12px;line-height:1.4}
+.ec-c.lead{border-color:var(--gold);background:#FFF9EC}.ec-c b.n{font:600 12.5px var(--disp)}.ec-c .p{font:700 20px var(--disp);display:block;margin:2px 0}
+.ec-belt{height:12px;border-radius:6px;margin-top:6px;background:#F0DDE4;position:relative;overflow:hidden}
+.ec-belt::before{content:'';position:absolute;inset:3px 0;background:repeating-linear-gradient(90deg,#C98A3A 0 10px,transparent 10px 22px);animation:ecMove var(--dur,2s) linear infinite}
+@keyframes ecMove{to{transform:translateX(22px)}}
+.ec-belt::before{left:-22px}
+.errc{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:8px 0}
+.errc>div{border:1.5px dashed #E6C6D1;border-radius:10px;background:#FBF3F6;padding:6px 7px;font-size:11px;line-height:1.35;opacity:.55;transition:all .3s}
+.errc>div b{display:block;font:700 10px var(--mono);text-transform:uppercase;letter-spacing:.04em;margin-bottom:2px}
+.errc>div.on{opacity:1;border-style:solid;background:#fff}.errc>div.cur{box-shadow:0 0 0 3px var(--gold-soft);border-color:var(--gold)}
+.bo-leg{display:grid;grid-template-columns:1fr 1fr;gap:2px 12px;font-size:11.5px;margin:6px 2px 0;color:#4b3340}.bo-leg span b{display:inline-block;width:16px;font:700 10px var(--mono);color:#7A394D}
+@media(max-width:560px){.vr-ctl{gap:3px}.vr-q{font-size:10px}.vr-q span{font-size:9.5px}.ec-co{grid-template-columns:1fr}.errc{grid-template-columns:1fr 1fr}.vr-tg{gap:2px}.vr-tg button{padding:3px 6px;font-size:10px}.bo-leg{grid-template-columns:1fr}.lc-plaza{gap:4px}}
+@media(prefers-reduced-motion:reduce){.ff-c .ico,.vr-ball svg,.vr-fin.on,.ec-belt::before,.vr-gate.hit{animation:none!important}.ff-w,.ff-c,.vr-ball{transition:none}}
 </style>
 </head>
 <body>
@@ -719,9 +782,9 @@ const ANS=[
 ];
 function ansTile(ic,l,nu){return `<span class="ans-tile${nu?' nu':''}">${nu?'<span class="nw">NEW</span>':''}<span class="ic">${ic}</span><span class="tl">${l}</span></span>`}
 function ansDetail(i){const a=ANS[i];return `<div class="ans-dh"><b>${a.n}</b><span>Produk: ${a.p?'baru':'lama'} · Pasar: ${a.m?'baru':'lama'}</span></div><p>${a.d}</p><div class="eg"><span>Contoh sederhana</span>${a.ex}</div>${a.hn?`<div class="eg"><span>Contoh Henry</span>${a.hn}</div>`:''}<div class="ans-risk"><div class="ans-rl">Risiko: <b style="color:${a.c}">${a.rl}</b></div><span class="ans-bar"><i style="width:${a.w}%;background:${a.c}"></i></span><p>${a.why}</p></div>`}
-function ansoffPick(i){document.querySelectorAll('.ans-cell').forEach(b=>b.classList.toggle('on',+b.dataset.i===i));document.querySelectorAll('.ans-detail').forEach(d=>d.classList.remove('flip','hl'));const el=document.getElementById('ans-d'+i);if(!el)return;el.scrollIntoView({behavior:'smooth',block:'nearest'});void el.offsetWidth;el.classList.add('hl');}
-function ansCell(i){const a=ANS[i];return `<button type="button" class="ans-cell${i===0?' on':''}" data-i="${i}" onclick="ansoffPick(${i})"><span class="ans-nm">${a.n}</span><span class="ans-pair">${ansTile(a.pi,a.pl,a.p)}<span class="ans-plus">+</span>${ansTile(a.mi,a.ml,a.m)}</span><span class="ans-mini"><span class="ans-bar"><i style="width:${a.w}%;background:${a.c}"></i></span><span class="ans-mt">Risiko ${a.rl.toLowerCase()}</span></span></button>`}
-function ANSOFF(){return `<div class="ans"><div class="ans-grid"><div class="ans-corner">Produk ↓<br>Pasar →</div><div class="ans-ax">Pasar lama</div><div class="ans-ax">Pasar baru <span class="nw">NEW</span></div><div class="ans-ax side">Produk lama</div>${ansCell(0)}${ansCell(2)}<div class="ans-ax side">Produk baru <span class="nw">NEW</span></div>${ansCell(1)}${ansCell(3)}</div><div class="ans-details">${[0,1,2,3].map(i=>`<div class="ans-detail" id="ans-d${i}" style="border-left-color:${ANS[i].c}">${ansDetail(i)}</div>`).join('')}</div><div class="tags flow" style="margin-top:12px"><span>Penetration</span><span>Product atau market development</span><span>Diversification</span></div><div class="ans-leg" style="margin-top:6px">Urutan risiko dari paling rendah ke paling tinggi.</div></div>`}
+function ansoffPick(i){const el=document.getElementById('ans-d'+i);if(!el)return;const wasOpen=!el.hidden;document.querySelectorAll('.ans-detail').forEach(d=>{d.hidden=true;d.classList.remove('flip','hl')});document.querySelectorAll('.ans-cell').forEach(b=>b.classList.remove('on'));if(wasOpen)return;el.hidden=false;const c=document.querySelector('.ans-cell[data-i="'+i+'"]');if(c)c.classList.add('on');void el.offsetWidth;el.classList.add('hl');el.scrollIntoView({behavior:'smooth',block:'nearest'});}
+function ansCell(i){const a=ANS[i];return `<button type="button" class="ans-cell" data-i="${i}" onclick="ansoffPick(${i})"><span class="ans-nm">${a.n}</span><span class="ans-pair">${ansTile(a.pi,a.pl,a.p)}<span class="ans-plus">+</span>${ansTile(a.mi,a.ml,a.m)}</span><span class="ans-mini"><span class="ans-bar"><i style="width:${a.w}%;background:${a.c}"></i></span><span class="ans-mt">Risiko ${a.rl.toLowerCase()}</span></span></button>`}
+function ANSOFF(){return `<div class="ans"><div class="ans-grid"><div class="ans-corner">Produk ↓<br>Pasar →</div><div class="ans-ax">Pasar lama</div><div class="ans-ax">Pasar baru <span class="nw">NEW</span></div><div class="ans-ax side">Produk lama</div>${ansCell(0)}${ansCell(2)}<div class="ans-ax side">Produk baru <span class="nw">NEW</span></div>${ansCell(1)}${ansCell(3)}</div><div class="ans-hint">👆 Ketuk kartu untuk membuka penjelasannya</div><div class="ans-details">${[0,1,2,3].map(i=>`<div class="ans-detail" id="ans-d${i}" hidden style="border-left-color:${ANS[i].c}">${ansDetail(i)}</div>`).join('')}</div><div class="tags flow" style="margin-top:12px"><span>Penetration</span><span>Product atau market development</span><span>Diversification</span></div><div class="ans-leg" style="margin-top:6px">Urutan risiko dari paling rendah ke paling tinggi.</div></div>`}
 
 /* ===== Visual interaktif Sesi 5: serangan/pertahanan, integrasi vertikal, transaction cost ===== */
 const FULL=(t,b)=>`<details class="vz-full"><summary>${t}</summary>${b}</details>`;
@@ -802,7 +865,7 @@ return `<div class="vz">${VZH('Rantai nilai industri <span class="vz-s">ketuk un
 
 /* --- C. Transaction cost: timbangan keputusan --- */
 function tcUpd(){const A=+document.getElementById('tc-a').value,M=+document.getElementById('tc-m').value,cr=document.getElementById('tc-c').checked,d=M-A;
-const ang=-Math.max(-20,Math.min(20,d*0.3));document.getElementById('tc-beam').style.setProperty('--a',ang+'deg');
+const ang=-Math.max(-10,Math.min(10,d*0.15));document.getElementById('tc-beam').style.setProperty('--a',ang+'deg');
 document.getElementById('tc-av').textContent=A;document.getElementById('tc-mv').textContent=M;document.getElementById('tc-pa').textContent=A;document.getElementById('tc-pm').textContent=M;
 let t,c,x;
 if(d>=30){t='Vertical integration';c='#8E2B3C';x='Transaction cost di pasar <b>jauh lebih besar</b> daripada biaya administrasi internal: lebih murah mengerjakan sendiri dan masuk ke tahap itu.'}
@@ -830,16 +893,16 @@ const UPP=[
 ];
 let uppI=0;
 function uppGo(i){i=Math.max(0,Math.min(UPP.length-1,i));uppI=i;const m=document.getElementById('upp-m');if(!m)return;
- m.style.left=(i*25+12.5)+'%';m.style.bottom=(36+i*30+3)+'px';
+ m.style.left=(i*25+12.5)+'%';m.style.bottom=(64+i*26+3)+'px';
  document.querySelectorAll('.upp-step').forEach((b,j)=>{b.classList.toggle('past',j<=i);b.classList.toggle('cur',j===i)});
  const s=UPP[i];[['k',s.k],['c',s.c],['d',s.d]].forEach(([id,v])=>{const e=document.getElementById('upp-b'+id);if(e)e.style.width=v+'%'});
  document.getElementById('upp-cap').innerHTML='<b>'+(i+1)+'. '+s.n+'.</b> '+s.cap;
  document.getElementById('upp-prev').disabled=i===0;document.getElementById('upp-next').disabled=i===UPP.length-1;
  m.classList.remove('hop');void m.offsetWidth;m.classList.add('hop');}
 function UPPVIS(){uppI=0;
-const steps=UPP.map((s,i)=>`<button type="button" class="upp-step${i===0?' past cur':''}" style="height:${36+i*30}px" onclick="uppGo(${i})"><span class="upp-ic">${ico(s.ic,30)}</span><span class="upp-n">${s.n}</span></button>`).join('');
+const steps=UPP.map((s,i)=>`<button type="button" class="upp-step${i===0?' past cur':''}" style="height:${64+i*26}px" onclick="uppGo(${i})"><span class="upp-ic">${ico(s.ic,30)}</span><span class="upp-n">${s.n}</span></button>`).join('');
 const meter=(id,l,col)=>`<div class="upp-me"><span>${l}</span><span class="upp-tr"><i id="upp-b${id}" style="width:${UPP[0][id]}%;background:${col}"></i></span></div>`;
-return `<div class="vz">${VZH('Tangga internasionalisasi <span class="vz-s">naikkan tahap, lihat pengetahuan dan komitmen ikut naik</span>')}<div class="upp-st"><div class="upp-m" id="upp-m" style="left:12.5%;bottom:39px">${ico('snack',40)}</div>${steps}</div><div class="sc-btns"><button type="button" class="sc-btn" id="upp-prev" onclick="uppGo(uppI-1)" disabled>← Turun</button><button type="button" class="sc-btn on" id="upp-next" onclick="uppGo(uppI+1)">Naik satu tahap →</button><button type="button" class="sc-btn" onclick="uppGo(0)">Ulangi</button></div><div class="upp-meters">${meter('k','Market knowledge','#3c9d68')}${meter('c','Market commitment','#C98A3A')}${meter('d','Psychic distance yang berani dijangkau','#8E2B3C')}</div><div class="vc-cap" id="upp-cap"><b>1. ${UPP[0].n}.</b> ${UPP[0].cap}</div><div class="ans-leg">Empat tahap ini ilustrasi dari pola "ekspor dulu, baru anak usaha" di Henry; angka batangnya hanya gambaran.</div></div>`}
+return `<div class="vz">${VZH('Tangga internasionalisasi <span class="vz-s">naikkan tahap, lihat pengetahuan dan komitmen ikut naik</span>')}<div class="upp-st"><div class="upp-m" id="upp-m" style="left:12.5%;bottom:67px">${ico('snack',40)}</div>${steps}</div><div class="sc-btns"><button type="button" class="sc-btn" id="upp-prev" onclick="uppGo(uppI-1)" disabled>← Turun</button><button type="button" class="sc-btn on" id="upp-next" onclick="uppGo(uppI+1)">Naik satu tahap →</button><button type="button" class="sc-btn" onclick="uppGo(0)">Ulangi</button></div><div class="upp-meters">${meter('k','Market knowledge','#3c9d68')}${meter('c','Market commitment','#C98A3A')}${meter('d','Psychic distance yang berani dijangkau','#8E2B3C')}</div><div class="vc-cap" id="upp-cap"><b>1. ${UPP[0].n}.</b> ${UPP[0].cap}</div><div class="ans-leg">Empat tahap ini ilustrasi dari pola "ekspor dulu, baru anak usaha" di Henry; angka batangnya hanya gambaran.</div></div>`}
 
 /* --- First mover vs late mover: slider waktu --- */
 const FM_Y=t=>105-88/(1+Math.exp(-(t-50)/13));
@@ -859,7 +922,7 @@ function fmSet(t){document.getElementById('fm-t').value=t;fmUpd();}
 function FMVIS(){
 const zone=(a,b,col,l)=>`<rect x="${FM_X(a)}" y="4" width="${FM_X(b)-FM_X(a)}" height="106" fill="${col}"/><text x="${(FM_X(a)+FM_X(b))/2}" y="15" text-anchor="middle" font-size="7.5" font-family="IBM Plex Mono,monospace" fill="#7A394D">${l}</text>`;
 const curve=fmPath(100);
-const bar=(id,l,col)=>`<div class="upp-me"><span>${l}</span><span class="upp-tr"><i id="fm-b${id}" style="width:50%;background:${col}"></i></span></div>`;
+const bar=(id,l,col)=>`<div class="upp-me"><span>${l}</span><span class="upp-tr"><i id="fm-b${id}" style="width:${{a:35,r:40,c:55}[id]}%;background:${col}"></i></span></div>`;
 const pin=(t,l,dy)=>`<g><circle cx="${FM_X(t)}" cy="${FM_Y(t)}" r="3" fill="#8E2B3C" stroke="#fff" stroke-width="1"/><text x="${FM_X(t)}" y="${FM_Y(t)+dy}" text-anchor="middle" font-size="7" font-family="IBM Plex Mono,monospace" fill="#8E2B3C">${l}</text></g>`;
 return `<div class="vz">${VZH('Kapan masuk pasar? <span class="vz-s">geser waktu masuk, lihat untung dan ruginya berubah</span>')}<svg class="fm-svg" viewBox="0 0 300 118" role="img" aria-label="Kurva adopsi pasar dan waktu masuk">${zone(0,25,'#FFF0D2','FIRST MOVER')}${zone(25,60,'#FBE3E9','FAST FOLLOWER')}${zone(60,100,'#E6F3EA','LATE MOVER')}<path d="${curve}" fill="none" stroke="#D9B8C4" stroke-width="2" stroke-linecap="round"/><path id="fm-fill" d="${fmPath(50)}" fill="none" stroke="#C98A3A" stroke-width="3" stroke-linecap="round"/>${pin(22,'DSC 2012',-7)}${pin(72,'Gillette 2015',-7)}<g id="fm-mk" style="transform:translate(${FM_X(50)}px,${FM_Y(50)}px);transition:transform .25s ease"><circle r="6" fill="#C98A3A" stroke="#fff" stroke-width="2"/></g><text x="150" y="116" text-anchor="middle" font-size="7" font-family="IBM Plex Mono,monospace" fill="#9A5468">waktu → (adopsi pasar naik)</text></svg>
 <input type="range" id="fm-t" class="fm-rng" min="0" max="100" value="50" oninput="fmUpd()" aria-label="Waktu masuk pasar">
@@ -954,6 +1017,174 @@ function PDVIS(){const ln=PD_LN.map(([a,b])=>`<line class="pd-l${(a==='fr'||b===
  +`<line class="pd-l pd-g" data-a="chance" data-b="chance" x1="${PD.chance.x}" y1="${PD.chance.y}" x2="50" y2="50"/>`;
  const nd=Object.entries(PD).map(([k,p])=>`<button type="button" class="pd-node${p.ext?' ext':''}${k==='fr'?' on':''}" data-k="${k}" style="left:${p.x}%;top:${p.y}%" onclick="pdPick('${k}')"><span class="vc-ic">${ico(p.ic,30)}</span><span class="pd-n">${p.s}</span></button>`).join('');
  return `<div class="vz">${VZH('Berlian daya saing <span class="vz-s">ketuk tiap sisi, garis yang terhubung ikut menyala</span>')}<div class="pd-wrap"><svg class="pd-svg" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">${ln}</svg><div class="pd-core">Daya saing<br>negara</div>${nd}</div><div class="ans-detail intl-detail" id="pd-d">${pdHTML('fr')}</div><div class="ans-leg">Keempat atribut membentuk satu sistem (kerangka umum Porter). Pemerintah dan chance adalah variabel eksternal.</div></div>`}
+
+/* ===== Visual Sesi 1-4 (kustom) ===== */
+const sleepMs=ms=>new Promise(r=>setTimeout(r,ms));
+
+/* --- Sesi 2: Five Forces sebagai kue profit yang digigit --- */
+const FF=[
+{n:'Pesaing',ic:'rival',tip:'Rivalry makin kuat bila pesaing banyak atau kekuatannya seimbang, pertumbuhan industri lambat, dan fixed costs tinggi (mendorong perang harga).'},
+{n:'Pendatang baru',ic:'sprout',tip:'Ancaman naik bila barriers to entry rendah: economies of scale, capital requirement, diferensiasi, akses distribusi, dan cost advantage.'},
+{n:'Pembeli',ic:'shop',tip:'Kuat bila pembeli terkonsentrasi dan membeli volume besar, atau produknya standar sehingga mudah berpindah. Contoh Henry: Wal-Mart.'},
+{n:'Substitusi',ic:'ninja',tip:'Kuat bila price-performance substitusi menarik. Substitusi menjadi batas atas harga yang bisa dikenakan industri.'},
+{n:'Pemasok',ic:'truck',tip:'Kuat bila pemasok terkonsentrasi, substitusinya sedikit, atau switching cost tinggi. Contoh Henry: Ryanair bergantung pada Boeing.'}
+];
+const FF_LV=['Rendah','Sedang','Tinggi'],FF_COL=['#3c9d68','#C98A3A','#8E2B3C'];
+let ffL=[0,0,0,0,0],ffSel=0;
+const ffAng=i=>(-90+72*i)*Math.PI/180;
+function ffWedge(i){const a=ffAng(i),R=52,p=t=>(100+R*Math.cos(t)).toFixed(1)+' '+(100+R*Math.sin(t)).toFixed(1);return 'M100 100L'+p(a-Math.PI/5)+'A'+R+' '+R+' 0 0 1 '+p(a+Math.PI/5)+'Z'}
+function ffPos(i,l){const a=ffAng(i),d=37-4*l;return 'left:'+(50+d*Math.cos(a)).toFixed(1)+'%;top:'+(50+d*Math.sin(a)).toFixed(1)+'%;--dx:'+(-Math.cos(a)*7).toFixed(1)+'px;--dy:'+(-Math.sin(a)*7).toFixed(1)+'px'}
+function ffVerdict(p){if(p>=70)return['Industri relatif menarik','Tekanan kelima force masih rendah, jadi sebagian besar profit tetap di tangan incumbent.','#3c9d68'];if(p>=40)return['Tekanan sedang','Beberapa force sudah menggigit profit. Lihat force mana yang bisa dilemahkan atau dihindari.','#C98A3A'];return['Industri kurang menarik','Banyak force kuat sekaligus: profit industri tergerus dari banyak arah.','#8E2B3C']}
+function ffUpd(){let area=0;
+ FF.forEach((f,i)=>{const l=ffL[i],s=1-0.25*l;area+=s*s;
+  const w=document.getElementById('ffw'+i);if(w)w.style.transform='scale('+s+')';
+  const c=document.getElementById('ffc'+i);if(!c)return;
+  c.setAttribute('style',ffPos(i,l));c.classList.toggle('l2',l===2);c.classList.toggle('sel',i===ffSel);
+  const lv=c.querySelector('.ff-lv');lv.textContent=FF_LV[l];lv.style.color=FF_COL[l]});
+ const pct=Math.round(area/5*100),v=ffVerdict(pct);
+ const q=id=>document.getElementById(id);if(!q('ff-pct'))return;
+ q('ff-pct').textContent=pct+'%';const b=q('ff-bar');b.style.width=pct+'%';b.style.background=v[2];
+ q('ff-mouth').setAttribute('d',pct>=70?'M95 105q5 5 10 0':pct>=40?'M95 107h10':'M95 109q5-5 10 0');
+ q('ff-v').style.borderLeftColor=v[2];q('ff-v').innerHTML='<b style="color:'+v[2]+'">'+v[0]+'</b><p>'+v[1]+'</p>';
+ q('ff-cap').innerHTML='<b>'+FF[ffSel].n+' · '+FF_LV[ffL[ffSel]]+'.</b> '+FF[ffSel].tip}
+function ffTap(i){ffL[i]=(ffL[i]+1)%3;ffSel=i;ffUpd()}
+function ffSet(a,sel){ffL=a.slice();ffSel=sel;ffUpd()}
+function FFVIS(){ffL=[0,0,0,0,0];ffSel=0;
+const pal=['#F7B7C6','#FFD9A0','#CFE0F7','#BFE8C8','#E4D6F7'];
+const wedges=FF.map((f,i)=>`<path class="ff-w" id="ffw${i}" d="${ffWedge(i)}" fill="${pal[i]}"/>`).join('');
+const chars=FF.map((f,i)=>`<button type="button" class="ff-c${i===0?' sel':''}" id="ffc${i}" style="${ffPos(i,0)}" onclick="ffTap(${i})">${ico(f.ic,30)}<span class="ff-n">${f.n}</span><span class="ff-lv" style="color:${FF_COL[0]}">${FF_LV[0]}</span></button>`).join('');
+const v=ffVerdict(100);
+return `<div class="vz">${VZH('Siapa yang menggigit kue profit? <span class="vz-s">ketuk tiap force untuk menguatkannya</span>')}<div class="ff-stage"><svg class="ff-cake" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="58" fill="#fff" stroke="#E6C6D1" stroke-width="2" stroke-dasharray="3 4"/>${wedges}<g stroke="#7A394D" fill="none" stroke-linecap="round" stroke-width="1.6"><circle cx="100" cy="100" r="12" fill="#FFF3DA"/><path id="ff-mouth" d="M95 105q5 5 10 0"/></g><g stroke="none"><circle cx="95.5" cy="99" r="1.6" fill="#5A2A3A"/><circle cx="104.5" cy="99" r="1.6" fill="#5A2A3A"/></g></svg>${chars}</div>
+<div class="ff-pct"><b id="ff-pct">100%</b><span>sisa kue profit industri</span><span class="ans-bar"><i id="ff-bar" style="width:100%;background:${v[2]}"></i></span></div>
+<div class="tc-pre"><span>Coba skenario:</span><button type="button" onclick="ffSet([0,0,0,0,2],4)">Pemasok dominan (Ryanair dan Boeing)</button><button type="button" onclick="ffSet([0,0,2,0,0],2)">Pembeli raksasa (Wal-Mart)</button><button type="button" onclick="ffSet([2,2,2,2,2],0)">Semua force kuat</button><button type="button" onclick="ffSet([0,0,0,0,0],0)">Ulangi</button></div>
+<div class="vc-cap" id="ff-cap" style="margin-top:10px"><b>${FF[0].n} · ${FF_LV[0]}.</b> ${FF[0].tip}</div>
+<div class="tc-v" id="ff-v" style="border-left-color:${v[2]}"><b style="color:${v[2]}">${v[0]}</b><p>${v[1]}</p></div>
+<div class="ans-leg">Kue dan persentasenya hanya ilustrasi (kelima force diberi bobot sama). Porter tidak memberi angka; yang dari materi adalah kondisi tiap force menjadi kuat.</div></div>`}
+
+/* --- Sesi 2: Industry life cycle, keramaian pasar --- */
+const LC_ST=[['Introduction',0,22,'Penjualan tumbuh lambat dan biaya tinggi karena produksi masih terbatas. R&D besar, harga premium, ada first-mover advantage, tetapi profit masih negatif.'],['Growth',22,52,'Penjualan naik cepat dan economies of scale mulai terasa. Profit naik sehingga entrant baru masuk, dan perusahaan berebut brand serta repeat purchase.'],['Maturity',52,78,'Pertumbuhan melambat dan pasar jenuh. Persaingan bergeser ke biaya dan efisiensi, dan rivalry makin intens.'],['Decline',78,100.01,'Penjualan dan profit turun, pelanggan pindah ke teknologi baru, terjadi persaingan harga, dan perusahaan mulai keluar atau konsolidasi.']];
+const LC_X=t=>12+t*2.76,LC_S=t=>100*Math.exp(-Math.pow((t-62)/30,2)),LC_Y=t=>112-0.95*LC_S(t);
+const lcSm=(t,a,b)=>{const x=Math.max(0,Math.min(1,(t-a)/(b-a)));return x*x*(3-2*x)};
+const LC_N=t=>Math.round(2+9*lcSm(t,12,50)-8*lcSm(t,72,100));
+const LC_P=t=>80*Math.exp(-Math.pow((t-48)/26,2))-40*Math.exp(-Math.pow((t-6)/12,2));
+const LC_RANK=[3,8,0,10,5,1,7,11,4,9,2,6];
+function lcPath(to){let d='';for(let t=0;t<=to;t+=2){d+=(t?'L':'M')+LC_X(t).toFixed(1)+' '+LC_Y(t).toFixed(1)}return d}
+let lcTm=null,lcPrev=-1;
+function lcStop(){if(lcTm){clearInterval(lcTm);lcTm=null}const b=document.getElementById('lc-play');if(b)b.textContent='▶ Putar'}
+function lcUpd(){const r=document.getElementById('lc-t');if(!r)return;const t=+r.value;
+ const st=LC_ST.findIndex(s=>t>=s[1]&&t<s[2]),n=LC_N(t),p=LC_P(t),q=id=>document.getElementById(id);
+ const mk=q('lc-mk');mk.setAttribute('x',(LC_X(t)-12).toFixed(1));mk.setAttribute('y',(LC_Y(t)-23).toFixed(1));
+ q('lc-fill').setAttribute('d',lcPath(t));
+ document.querySelectorAll('.lc-chip').forEach((c,j)=>c.classList.toggle('on',j===st));
+ document.querySelectorAll('.lc-s').forEach((s,j)=>s.classList.toggle('on',LC_RANK[j]<n));
+ q('lc-plaza').classList.toggle('dec',st===3);
+ q('lc-n').textContent=n;
+ const bar=q('lc-pb');if(p>=0){bar.style.left='50%';bar.style.width=(p/80*50)+'%';bar.style.background='#3c9d68'}else{const w=-p/40*50;bar.style.left=(50-w)+'%';bar.style.width=w+'%';bar.style.background='#B3261E'}
+ q('lc-pt').textContent=p<-3?'negatif':p<25?'tipis':p<60?'cukup':'tinggi';
+ if(st!==lcPrev){lcPrev=st;q('lc-cap').innerHTML='<b>'+LC_ST[st][0]+'.</b> '+LC_ST[st][3]}}
+function lcGo(t){lcStop();document.getElementById('lc-t').value=t;lcUpd()}
+function lcPlay(){if(lcTm){lcStop();return}const r=document.getElementById('lc-t');if(!r)return;if(+r.value>=99)r.value=0;document.getElementById('lc-play').textContent='❚❚ Jeda';
+ lcTm=setInterval(()=>{const r=document.getElementById('lc-t');if(!r){lcStop();return}let v=+r.value+0.8;if(v>=100){v=100;lcStop()}r.value=v;lcUpd()},60)}
+function LCVIS(){lcStop();lcPrev=-1;
+const chips=LC_ST.map((s,j)=>`<button type="button" class="lc-chip${j===0?' on':''}" onclick="lcGo(${[8,38,66,90][j]})">${s[0]}</button>`).join('');
+const slots=LC_RANK.map(()=>`<div class="lc-s"><span>${ico('shop',34)}</span></div>`).join('');
+return `<div class="vz">${VZH('Keramaian pasar dari waktu ke waktu <span class="vz-s">putar atau geser, lihat pesaing masuk dan keluar</span>')}<div class="lc-chips">${chips}<button type="button" class="sc-btn on" id="lc-play" onclick="lcPlay()">▶ Putar</button></div>
+<svg class="fm-svg lc-svg" viewBox="0 0 300 124" role="img" aria-label="Kurva penjualan sepanjang life cycle"><path d="${lcPath(100)}" fill="none" stroke="#D9B8C4" stroke-width="2" stroke-linecap="round"/><path id="lc-fill" d="${lcPath(8)}" fill="none" stroke="#C98A3A" stroke-width="3.2" stroke-linecap="round"/><svg id="lc-mk" x="${(LC_X(8)-12).toFixed(1)}" y="${(LC_Y(8)-23).toFixed(1)}" width="24" height="24" viewBox="0 0 48 48" fill="none" stroke="#7A394D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICO.snack()}</svg><text x="150" y="121" text-anchor="middle" font-size="7" font-family="IBM Plex Mono,monospace" fill="#9A5468">waktu → (garis = penjualan industri)</text></svg>
+<input type="range" id="lc-t" class="fm-rng" min="0" max="100" step="0.5" value="8" oninput="lcStop();lcUpd()" aria-label="Waktu dalam life cycle">
+<div class="lc-plaza" id="lc-plaza">${slots}</div>
+<div class="upp-meters"><div class="upp-me"><span>Jumlah pesaing di pasar: <b id="lc-n">2</b></span><span></span></div><div class="upp-me"><span>Profit industri: <b id="lc-pt">negatif</b></span><span class="lc-pm"><u></u><i id="lc-pb" style="left:30%;width:20%;background:#B3261E"></i></span></div></div>
+<div class="vc-cap" id="lc-cap"><b>${LC_ST[0][0]}.</b> ${LC_ST[0][3]}</div>
+<div class="ans-leg">Jumlah toko dan lebar batang profit hanya ilustrasi kecenderungan. Ciri tiap tahap mengikuti tabel di atas; panjang tiap tahap berbeda antar industri.</div></div>`}
+
+/* --- Sesi 3: VRIO sebagai gerbang ujian --- */
+const VR=[['V','Valuable','Memanfaatkan peluang atau menetralkan ancaman?'],['R','Rare','Hanya dimiliki sedikit pesaing?'],['I','Costly to imitate','Mahal atau sulit ditiru pihak lain?'],['O','Organization','Organisasi sudah tertata untuk memakainya?']];
+const VR_RES=[['Competitive disadvantage','Capability tidak membantu memanfaatkan peluang atau menetralkan ancaman.','#8E2B3C'],['Competitive parity','Banyak pesaing punya capability yang sama.','#6b4a56'],['Temporary competitive advantage','Unggul untuk sementara, lalu pesaing menyusul.','#C98A3A'],['Potensi keunggulan belum termanfaatkan','Organisasi belum tertata untuk memakai capability yang valuable, rare, dan sulit ditiru.','#B86A2A'],['Sustainable competitive advantage','Valuable, rare, costly to imitate, dan didukung organisasi.','#3c9d68']];
+const VR_BC=['#E3C3CE','#CFE0F7','#BFE8C8','#FFD27A','#F7B7C6'];
+let vrA=[1,1,1,1],vrTok=0;
+const vrX=k=>12.5+25*k-9;
+function vrBall(){return `<svg viewBox="0 0 48 48" width="34" height="34" fill="none" stroke="#7A394D" stroke-width="2" stroke-linecap="round"><circle class="bb" cx="24" cy="24" r="19"/>${FACE(24,25)}</svg>`}
+function vrVerdictHtml(i){const r=VR_RES[i];return '<b style="color:'+r[2]+'">'+r[0]+'</b><p>'+r[1]+'</p>'}
+function vrApply(){const f=vrA.indexOf(0);
+ vrA.forEach((a,i)=>{const g=document.getElementById('vrg'+i);g.className='vr-gate'+(a?'':' no')+(f>=0&&i>f?' dim':'');
+  document.getElementById('vry'+i).classList.toggle('on',!!a);document.getElementById('vrn'+i).classList.toggle('on',!a)})}
+function vrReset(){const b=document.getElementById('vr-ball');if(!b)return;b.style.left='2%';b.className='vr-ball';b.style.setProperty('--bc',VR_BC[0]);document.getElementById('vr-fin').classList.remove('on');
+ const v=document.getElementById('vr-v');v.style.borderLeftColor='#6b4a56';v.innerHTML='<b style="color:#6b4a56">Siap dijalankan</b><p>Atur jawaban tiap gerbang, lalu tekan Jalankan. Bola capability akan berhenti di gerbang pertama yang dijawab Tidak.</p>'}
+function vrTog(i,v){vrTok++;vrA[i]=v;vrApply();vrReset()}
+async function vrRun(){const tok=++vrTok;vrApply();vrReset();await sleepMs(60);const b=document.getElementById('vr-ball');if(!b)return;
+ for(let k=0;k<4;k++){b.style.left=vrX(k)+'%';b.classList.add('roll');await sleepMs(720);if(tok!==vrTok)return;b.classList.remove('roll');
+  const g=document.getElementById('vrg'+k);
+  if(!vrA[k]){b.classList.add('bump');g.classList.add('hit');const v=document.getElementById('vr-v');v.style.borderLeftColor=VR_RES[k][2];v.innerHTML=vrVerdictHtml(k);return}
+  g.classList.add('pass');b.style.setProperty('--bc',VR_BC[k+1]);await sleepMs(380);if(tok!==vrTok)return}
+ b.style.left='93%';b.classList.add('roll');await sleepMs(720);if(tok!==vrTok)return;b.classList.remove('roll');b.classList.add('win');document.getElementById('vr-fin').classList.add('on');
+ const v=document.getElementById('vr-v');v.style.borderLeftColor=VR_RES[4][2];v.innerHTML=vrVerdictHtml(4)}
+function vrPre(k){vrA=[1,1,1,1];if(k<4)vrA[k]=0;vrRun()}
+function VRVIS(){vrA=[1,1,1,1];vrTok++;
+const gates=VR.map((g,i)=>`<div style="display:flex;align-items:flex-end"><div class="vr-gate" id="vrg${i}">${g[0]}</div></div>`).join('');
+const ctl=VR.map((g,i)=>`<div><div class="vr-q">${g[0]} · ${g[1]}<span>${g[2]}</span></div><div class="vr-tg"><button type="button" class="y on" id="vry${i}" onclick="vrTog(${i},1)">Ya</button><button type="button" class="n" id="vrn${i}" onclick="vrTog(${i},0)">Tidak</button></div></div>`).join('');
+return `<div class="vz">${VZH('Gerbang ujian capability <span class="vz-s">jawab tiap gerbang, lalu jalankan bolanya</span>')}<div class="vr-track"><div class="vr-ground"></div><div class="vr-cols">${gates}</div><div class="vr-fin" id="vr-fin">${ico('star',30)}</div><div class="vr-ball" id="vr-ball" style="--bc:${VR_BC[0]}">${vrBall()}</div></div>
+<div class="vr-ctl">${ctl}</div>
+<div class="tc-pre"><button type="button" class="sc-btn on" onclick="vrRun()">▶ Jalankan</button><span>Lompat ke hasil:</span><button type="button" onclick="vrPre(0)">Disadvantage</button><button type="button" onclick="vrPre(1)">Parity</button><button type="button" onclick="vrPre(2)">Sementara</button><button type="button" onclick="vrPre(3)">Belum termanfaatkan</button><button type="button" onclick="vrPre(4)">Sustainable</button></div>
+<div class="tc-v" id="vr-v" style="border-left-color:#6b4a56"><b style="color:#6b4a56">Siap dijalankan</b><p>Atur jawaban tiap gerbang, lalu tekan Jalankan. Bola capability akan berhenti di gerbang pertama yang dijawab Tidak.</p></div>
+<div class="ans-leg">Gerbang setelah jawaban Tidak pertama dibuat redup, sesuai tanda – di tabel (tidak perlu dinilai lagi). Hasil tiap kombinasi dari kerangka umum Barney; cocokkan dengan catatan dosen.</div></div>`}
+
+/* --- Sesi 4: Experience curve, dua pabrik --- */
+let ecR=0.25;
+const ecC=L=>10*Math.pow(1-ecR,L),ecX=L=>30+L*50,ecY=c=>130-c*11;
+function ecPath(f,to){let d='';for(let i=0;i<=Math.round(to*10);i++){const L=i/10;d+=(i?'L':'M')+ecX(L).toFixed(1)+' '+ecY(f(L)).toFixed(1)}return d}
+function ecUpd(){const r=document.getElementById('ec-d');if(!r)return;const d=+r.value,q=id=>document.getElementById(id);
+ const lead=L=>ecC(L),comp=L=>ecC(L/2);
+ q('ec-l').setAttribute('d',ecPath(lead,d));q('ec-p').setAttribute('d',ecPath(comp,d));
+ const top=ecPath(comp,d),bot=ecPath(lead,d).split('L').reverse().map((s,i)=>(i?'L':'L')+s.replace('M','')).join('');
+ q('ec-gap').setAttribute('d',top+bot+'Z');
+ q('ec-dl').setAttribute('cx',ecX(d));q('ec-dl').setAttribute('cy',ecY(lead(d)));q('ec-dp').setAttribute('cx',ecX(d));q('ec-dp').setAttribute('cy',ecY(comp(d)));
+ const c1=lead(d),c2=comp(d),u1=Math.round(100*Math.pow(2,d)),u2=Math.round(100*Math.pow(2,d/2));
+ q('ec-c1').textContent='£'+c1.toFixed(2);q('ec-c2').textContent='£'+c2.toFixed(2);q('ec-u1').textContent=u1.toLocaleString('id-ID');q('ec-u2').textContent=u2.toLocaleString('id-ID');
+ q('ec-b1').style.setProperty('--dur',(2.2/(1+0.7*d)).toFixed(2)+'s');q('ec-b2').style.setProperty('--dur',(2.2/(1+0.7*d/2)).toFixed(2)+'s');
+ q('ec-dd').textContent=d.toFixed(1);
+ q('ec-v').innerHTML=d<0.2?'<b>Belum ada selisih</b><p>Keduanya baru mulai di £10 per unit. Gandakan output pemimpin dan lihat biayanya turun lebih cepat.</p>':'<b>Ruang menekan pesaing: £'+c1.toFixed(2)+' sampai £'+c2.toFixed(2)+'</b><p>Pemimpin bisa menetapkan harga di dalam rentang ini. Di bawah biaya pesaing, pesaing rugi, sementara pemimpin masih untung. Itulah alasan mengejar pangsa dan pengalaman lebih dulu.</p>'}
+function ecRate(r){ecR=r;document.querySelectorAll('.ec-rb').forEach(b=>b.classList.toggle('on',+b.dataset.r===r));ecUpd()}
+function ecDouble(){const r=document.getElementById('ec-d');r.value=Math.min(5,Math.floor(+r.value+0.001)+1);ecUpd()}
+function ECVIS(){ecR=0.25;
+const ticks=[0,1,2,3,4,5].map(L=>`<text x="${ecX(L)}" y="146" text-anchor="middle" font-size="7" font-family="IBM Plex Mono,monospace" fill="#9A5468">${[100,200,400,800,'1,6rb','3,2rb'][L]}</text><line x1="${ecX(L)}" y1="132" x2="${ecX(L)}" y2="135" stroke="#D9B8C4"/>`).join('');
+const rb=r=>`<button type="button" class="sc-btn ec-rb${r===0.25?' on':''}" data-r="${r}" onclick="ecRate(${r})">${r*100}%</button>`;
+return `<div class="vz">${VZH('Dua pabrik, satu pengalaman <span class="vz-s">gandakan output, lihat biaya per unit turun</span>')}
+<svg class="ec-svg" viewBox="0 0 300 150" role="img" aria-label="Biaya per unit turun mengikuti pengalaman"><line x1="30" y1="132" x2="282" y2="132" stroke="#D9B8C4"/>${ticks}<path d="${ecPath(L=>ecC(L),5)}" fill="none" stroke="#EBCFD8" stroke-width="2"/><path id="ec-gap" d="" fill="#FFD27A" opacity=".45"/><path id="ec-p" d="" fill="none" stroke="#9A5468" stroke-width="2.6" stroke-linecap="round"/><path id="ec-l" d="" fill="none" stroke="#C98A3A" stroke-width="3.2" stroke-linecap="round"/><circle id="ec-dp" r="4.5" fill="#9A5468" stroke="#fff" stroke-width="1.5" cx="30" cy="20"/><circle id="ec-dl" r="5" fill="#C98A3A" stroke="#fff" stroke-width="1.5" cx="30" cy="20"/><text x="32" y="12" font-size="7" font-family="IBM Plex Mono,monospace" fill="#9A5468">biaya per unit</text></svg>
+<input type="range" id="ec-d" class="fm-rng" min="0" max="5" step="0.05" value="0" oninput="ecUpd()" aria-label="Berapa kali output berlipat dua">
+<div class="ec-rate"><span>Laju penurunan tiap output berlipat dua:</span>${rb(0.2)}${rb(0.25)}${rb(0.3)}<button type="button" class="sc-btn" onclick="ecDouble()">×2 output</button><span>(<b id="ec-dd">0.0</b> kali lipat dua)</span></div>
+<div class="ec-co"><div class="ec-c lead"><b class="n">Pemimpin pasar</b><span class="p" id="ec-c1">£10.00</span>output kumulatif <b id="ec-u1">100</b> unit<div class="ec-belt" id="ec-b1" style="--dur:2.2s"></div></div><div class="ec-c"><b class="n">Pesaing kecil</b><span class="p" id="ec-c2">£10.00</span>output kumulatif <b id="ec-u2">100</b> unit<div class="ec-belt" id="ec-b2" style="--dur:2.2s"></div></div></div>
+<div class="tc-v" id="ec-v"><b>Belum ada selisih</b><p>Keduanya baru mulai di £10 per unit. Gandakan output pemimpin dan lihat biayanya turun lebih cepat.</p></div>
+<div class="ans-leg">Dari materi: biaya awal £10 per unit pada 100 unit, dan turun sekitar 20–30% tiap output berlipat dua. Pesaing diandaikan tumbuh separuh secepat pemimpin, dan kecepatan sabuk hanya hiasan.</div></div>`}
+
+/* --- Sesi 4: Strategy canvas Cirque du Soleil, ERRC --- */
+const BO_F=['Pertunjukan hewan','Bintang sirkus','Banyak arena (tiga ring)','Humor slapstick','Unsur menegangkan','Kenyamanan venue','Alur cerita dan musik','Tarian ala balet'];
+const BO_IND=[8,8,7,7,7,3,1,1];
+const BO_ST=[BO_IND,[0,0,0,7,7,3,1,1],[0,0,0,3,3,3,1,1],[0,0,0,3,3,8,1,1],[0,0,0,3,3,8,9,8.5]];
+const BO_N=[['Mulai','Value curve sirkus tradisional: semua pesaing bersaing di faktor yang sama.'],['Eliminate','Buang faktor yang dianggap wajar oleh industri: pertunjukan hewan, bintang sirkus, dan banyak arena (tiga ring).'],['Reduce','Kurangi jauh di bawah standar industri: humor slapstick dan unsur menegangkan.'],['Raise','Naikkan jauh di atas standar industri: kenyamanan venue (satu tenda yang lebih mewah).'],['Create','Ciptakan yang belum pernah ditawarkan industri: produksi dengan alur cerita dan musik orisinal, serta tarian dari balet.']];
+const BO_G=[1,1,1,2,2,3,4,4],BO_COL=['#C98A3A','#8E2B3C','#E08A6B','#3c9d68','#7A5AC8'];
+let boV=BO_IND.slice(),boStep=0,boRaf=0,boTm=[];
+const boX=i=>26+i*38,boY=v=>140-12.5*v;
+function boDraw(){const pts=boV.map((v,i)=>boX(i).toFixed(1)+','+boY(v).toFixed(1)).join(' ');const c=document.getElementById('bo-cur');if(!c)return;c.setAttribute('points',pts);
+ boV.forEach((v,i)=>{const d=document.getElementById('bo-d'+i);d.setAttribute('cy',boY(v));d.setAttribute('fill',boStep>=BO_G[i]?BO_COL[BO_G[i]]:BO_COL[0])})}
+function boGo(k,auto){if(!auto){boTm.forEach(clearTimeout);boTm=[]}cancelAnimationFrame(boRaf);boStep=k;
+ const from=boV.slice(),to=BO_ST[k],t0=performance.now(),dur=800;
+ const f=now=>{const x=Math.min(1,(now-t0)/dur),e=x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2;boV=from.map((a,i)=>a+(to[i]-a)*e);boDraw();if(x<1)boRaf=requestAnimationFrame(f)};boRaf=requestAnimationFrame(f);
+ document.querySelectorAll('.bo-sb').forEach((b,j)=>b.classList.toggle('on',j===k));
+ document.querySelectorAll('.errc>div').forEach((e,j)=>{e.classList.toggle('on',boStep>=j+1);e.classList.toggle('cur',boStep===j+1)});
+ document.getElementById('bo-cap').innerHTML='<b>'+BO_N[k][0]+'.</b> '+BO_N[k][1]}
+function boPlay(){boTm.forEach(clearTimeout);boTm=[];boGo(0,true);[1,2,3,4].forEach((k,j)=>boTm.push(setTimeout(()=>boGo(k,true),1100*(j+1))))}
+function BOVIS(){boV=BO_IND.slice();boStep=0;
+const dots=BO_IND.map((v,i)=>`<circle id="bo-d${i}" cx="${boX(i)}" cy="${boY(v)}" r="4.6" fill="${BO_COL[0]}" stroke="#fff" stroke-width="1.5"/><text x="${boX(i)}" y="156" text-anchor="middle" font-size="7.5" font-weight="700" font-family="IBM Plex Mono,monospace" fill="#7A394D">${i+1}</text>`).join('');
+const ind=BO_IND.map((v,i)=>boX(i).toFixed(1)+','+boY(v).toFixed(1)).join(' ');
+const names=['Eliminate','Reduce','Raise','Create'],items=[['Pertunjukan hewan, bintang sirkus, banyak arena'],['Humor slapstick, unsur menegangkan'],['Kenyamanan venue'],['Alur cerita dan musik orisinal, tarian balet']];
+const grid=names.map((n,j)=>`<div><b style="color:${BO_COL[j+1]}">${n}</b>${items[j][0]}</div>`).join('');
+const sb=BO_N.map((s,k)=>`<button type="button" class="sc-btn bo-sb${k===0?' on':''}" onclick="boGo(${k})">${k?k+' ':''}${s[0]}</button>`).join('');
+return `<div class="vz">${VZH('Melukis value curve Cirque du Soleil <span class="vz-s">terapkan Four Actions satu per satu</span>')}
+<svg class="bo-svg" viewBox="0 0 320 162" role="img" aria-label="Strategy canvas: value curve sirkus tradisional dan Cirque du Soleil"><line x1="14" y1="143" x2="312" y2="143" stroke="#D9B8C4"/><text x="4" y="14" font-size="7" font-family="IBM Plex Mono,monospace" fill="#9A5468">nilai tinggi</text><text x="314" y="137" text-anchor="end" font-size="7" font-family="IBM Plex Mono,monospace" fill="#9A5468">nilai rendah</text><polyline points="${ind}" fill="none" stroke="#B07A8A" stroke-width="2.4" stroke-dasharray="5 4" stroke-linejoin="round"/><polyline id="bo-cur" points="${ind}" fill="none" stroke="#C98A3A" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="round"/>${dots}</svg>
+<div class="bo-leg">${BO_F.map((f,i)=>`<span><b>${i+1}</b>${f}</span>`).join('')}</div>
+<div class="tc-pre">${sb}<button type="button" class="sc-btn" onclick="boPlay()">▶ Putar urut</button></div>
+<div class="errc">${grid}</div>
+<div class="vc-cap" id="bo-cap"><b>${BO_N[0][0]}.</b> ${BO_N[0][1]}</div>
+<div class="ans-leg">Garis putus-putus: sirkus tradisional. Garis emas: Cirque du Soleil. Daftar faktor dan tindakan ERRC dari tabel di atas; tinggi garis hanya ilustrasi. Eliminate dan reduce menurunkan biaya, raise dan create menaikkan nilai bagi pembeli.</div></div>`}
 
 CONTENT.s5={kicker:'Sesi 5 · Henry Ch. 7',title:'Strategic Growth dan Competitive Position',desc:'Ansoff growth vector, strategi ofensif dan defensif, timing first mover dan late mover, integrasi horizontal dan vertikal, outsourcing, mergers and acquisitions, internal development, serta joint venture dan strategic alliance. Sumber: Henry Ch. 7 dan slide dosen.',
 materi:[
@@ -1130,6 +1361,17 @@ document.getElementById('main').innerHTML=`<div class="topic-head"><div class="k
 function isMobile(){return window.innerWidth<=800;}
 function toggleNav(){const s=document.getElementById('sidebar'),b=document.getElementById('navtoggle'),bd=document.getElementById('backdrop');if(isMobile()){const o=s.classList.toggle('mobile-open');bd.classList.toggle('show',o);b.classList.toggle('open',o);}else{const c=s.classList.toggle('collapsed');b.classList.toggle('open',!c);}}
 function closeNavMobile(){document.getElementById('sidebar').classList.remove('mobile-open');document.getElementById('backdrop').classList.remove('show');document.getElementById('navtoggle').classList.remove('open');}
+(function(){
+const inj=(k,needle,html,mode)=>{const m=CONTENT[k].materi;
+ if(mode==='after'){const i=m.indexOf(needle);if(i<0){console.warn('Visual tidak ketemu:',needle);return}CONTENT[k].materi=m.slice(0,i+needle.length)+html+m.slice(i+needle.length);return}
+ const i=m.indexOf('<h2>'+needle);if(i<0){console.warn('Visual tidak ketemu:',needle);return}
+ let n=m.indexOf('<div class="card"><h2>',i+5);if(n<0)n=m.length;const e=m.lastIndexOf('</div>',n);CONTENT[k].materi=m.slice(0,e)+html+m.slice(e)};
+inj('s2',"Porter's Five Forces",FFVIS());
+inj('s2','Industry life cycle',LCVIS());
+inj('s3','VRIO framework (Barney)',VRVIS());
+inj('s4','faktor lain bisa lebih menentukan.</p>',ECVIS(),'after');
+inj('s4','menjadi eksplisit.</p>',BOVIS(),'after');
+})();
 (function(){
 const UTS={s1:['Strategic management vs operational management'],s2:['Macro-environment vs competitive environment','Pengantar SWOT','PEST / PESTLE analysis',"Porter's Five Forces"],s3:['Primary dan support activities','SWOT dan TOWS','Resource-based view: resources dan capabilities','VRIO framework (Barney)','Make-or-buy dan core competence'],s4:['Tiga generic strategies (Porter)','Differentiation strategy','Stuck in the middle, hybrid strategy, dan kritik generic strategies','Blue ocean strategy (Kim dan Mauborgne)'],s5:['Innovation dan timing: first mover, fast follower, late mover','Tipologi strategi inovasi (Freeman)','Transaction-cost analysis dan outsourcing'],s6:['Empat tipe international strategy','Entry mode strategies']};
 for(const k in UTS){let m=CONTENT[k].materi;UTS[k].forEach(t=>{const h='<h2>'+t;if(m.indexOf(h)<0)console.warn('UTS tag tidak ketemu:',t);m=m.replace(h,h+' <span class="badge">Materi soal latihan UTS</span>')});CONTENT[k].materi=m;}
