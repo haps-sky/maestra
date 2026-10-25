@@ -745,6 +745,97 @@ html,body{overflow-x:hidden}.card td,.card th{overflow-wrap:normal;word-break:no
 .sk-b button:hover{border-color:var(--gold)}
 @media(max-width:560px){.sk-g{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){.ad-pr,.sk-t.open .sk-b{animation:none!important}}
+
+/* kartu 1: perbandingan dua level strategi */
+.cmp{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:stretch;margin:16px 0}
+.cmp-c{border:2px solid #E6C6D1;border-radius:14px;padding:14px 16px;background:#fff}
+.cmp-c.a{border-color:var(--gold);background:#FFF8E8}
+.cmp-c.b{border-color:#9db7dc;background:#F2F7FD}
+.cmp-h{display:flex;align-items:center;gap:10px}
+.cmp-h b{font:600 16px var(--disp);display:block;line-height:1.2}
+.cmp-h small{display:inline-block;margin-top:3px;font:600 10.5px var(--mono);padding:2px 8px;border-radius:10px;background:rgba(122,57,77,.1);color:#7A394D}
+.cmp-l{font:600 10.5px var(--mono);color:#9A5468;text-transform:uppercase;letter-spacing:.04em;margin:12px 0 5px}
+.cmp-q{border-left:4px solid var(--gold);padding:2px 0 2px 12px;font-size:14.5px;line-height:1.55}
+.cmp-c.b .cmp-q{border-left-color:#7ba3d6}
+.cmp-vs{align-self:center;width:34px;height:34px;border-radius:50%;background:#7A394D;color:#fff;font:700 12px/34px var(--mono);text-align:center}
+@media(max-width:620px){.cmp{grid-template-columns:1fr}.cmp-vs{justify-self:center}}
+
+/* gaya kartu pengganti tabel */
+.cmp-c.g{border-color:#8FD0AA;background:#F0FAF4}.cmp-c.g .cmp-q{border-left-color:#6FCF97}
+.cmp-c.p{border-color:#D8A3B5;background:#FDF0F4}.cmp-c.p .cmp-q{border-left-color:#C97B97}
+.cmp-c .cmp-q+.cmp-l{margin-top:12px}
+.stp{display:grid;gap:10px;margin:14px 0}
+.stp-i{display:flex;gap:12px;align-items:flex-start;border:2px solid #E6C6D1;border-radius:14px;padding:12px 14px;background:#fff}
+.stp-n{flex:none;width:30px;height:30px;border-radius:50%;background:var(--gold);color:#241a06;font:700 14px/30px var(--mono);text-align:center}
+.stp-t{font:600 15px var(--disp)}
+.stp-q{margin-top:3px;font-size:14px;line-height:1.55}
+.stp-r{margin-top:8px;font-size:13px;line-height:1.5;background:#F9E3DD;border-left:4px solid #8E2B3C;border-radius:0 8px 8px 0;padding:6px 10px}
+.stp-r b{color:#8E2B3C}
+.opt{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
+.opt-c{border:2px solid #E6C6D1;border-top:6px solid var(--c);border-radius:14px;padding:12px 14px;background:#fff;font-size:13.5px;line-height:1.5}
+.opt-c .cmp-h b{color:var(--c)}
+.stk{display:grid;gap:10px;margin:14px 0}
+.stk-c{border:2px solid #E6C6D1;border-radius:14px;background:#fff;overflow:hidden}
+.stk-h{background:#F7E4EA;font:600 14.5px var(--disp);padding:8px 14px}
+.stk-g{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:4px 14px 12px;font-size:13.5px;line-height:1.55}
+.fold{margin:14px 0;border:2px solid #E6C6D1;border-radius:12px;background:#fff;padding:0 12px}
+.fold summary{cursor:pointer;font:600 13px var(--sans);padding:10px 0;color:#7A394D}
+.fold[open] summary{border-bottom:1px solid #EBCFD8;margin-bottom:10px}
+.fold .tw{margin-bottom:12px}
+@media(max-width:620px){.opt,.stk-g{grid-template-columns:1fr}}
+
+/* ===== Sesi 9: desain organisasi ===== */
+.og-b{animation:ogIn .45s ease both}
+.og-b rect{fill:#fff;stroke:#C98A3A;stroke-width:2}
+.og-b.top rect{fill:#FFE3A8}
+.og-b.dup rect{fill:#FFF0B8;stroke-dasharray:4 3}
+.og-b.out rect{fill:#E8F1FC;stroke:#7BA3D6;stroke-dasharray:5 4}
+.og-b text{font:600 12.5px var(--sans);fill:#2D1822}
+.og-l{fill:none;stroke:#B08A98;stroke-width:2;animation:ogFade .5s ease both}
+.og-l.dsh{stroke:#7BA3D6;stroke-dasharray:6 5;animation:ogFade .5s ease both,csDash 1.2s linear infinite}
+.og-l.hot{stroke:#7A394D;stroke-width:3}
+.og-n{font:11.5px var(--mono);fill:#6b4a56}
+.og-p{fill:#F0C36A;stroke:#C98A3A;stroke-width:1.5;animation:ogIn .45s ease both}
+.og-p.hot{fill:#7A394D;stroke:#7A394D}
+@keyframes ogIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes ogFade{from{opacity:0}to{opacity:1}}
+.og-pro,.og-con{margin:6px 0 0;padding:6px 10px;border-radius:0 8px 8px 0;font-size:13px;line-height:1.5}
+.og-pro{background:#EAF7EF;border-left:4px solid #3c9d68}
+.og-con{background:#F9E3DD;border-left:4px solid #8E2B3C}
+.pl-c{cursor:pointer;outline:none;animation:ogIn .5s ease both}
+.pl-c rect{fill:#fff;stroke:#E6C6D1;stroke-width:2;transition:stroke .25s,fill .25s}
+.pl-c:hover rect{stroke:var(--gold)}
+.pl-c.on rect{stroke:var(--gold);stroke-width:3.5;fill:#FFF3DA}
+.pl-c:focus-visible rect{stroke:#7A394D;stroke-width:4}
+.pl-roof{fill:#FFE3A8;stroke:var(--gold);stroke-width:2}
+.pl-base{fill:#F7E4EA;stroke:#E6C6D1;stroke-width:2}
+.sd-g{transition:transform .5s ease}
+.sd-g circle{stroke:#7A394D;stroke-width:2}
+.sf-row{display:flex;align-items:stretch;gap:6px;flex-wrap:wrap;margin:8px 0}
+.sf-s{appearance:none;-webkit-appearance:none;flex:1;min-width:104px;border:2px solid #E6C6D1;border-radius:12px;background:#fff;padding:9px 8px;text-align:center;cursor:pointer;font:600 12px/1.3 var(--sans);color:var(--ink);transition:border-color .2s,background .2s}
+.sf-s:hover{border-color:var(--gold)}
+.sf-s.on{border-color:var(--gold);background:#FFF3DA}
+.sf-s.run{animation:csPop .5s ease}
+.sf-s .sf-n{display:block;font:600 11px var(--mono);color:#9A5468;margin-bottom:3px}
+.sf-s .ico{display:block;margin:0 auto 3px}
+.sf-a{align-self:center;color:#C98A3A;font-weight:700}
+.cb-r{border:2px solid #E6C6D1;border-radius:12px;background:#fff;padding:10px 12px;margin-top:8px}
+.cb-r b{font:600 14px var(--disp)}
+.cb-r small{display:block;font-size:12px;color:#6b4a56;margin:2px 0 6px;line-height:1.45}
+.cb-seg{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:7px}
+.cb-seg button{appearance:none;-webkit-appearance:none;border:1.5px solid #E6C6D1;background:#fff;color:var(--ink);font:12px var(--sans);padding:4px 11px;border-radius:14px;cursor:pointer;transition:background .2s,border-color .2s}
+.cb-seg button.on[data-s="2"]{background:#CDEBD8;border-color:#3c9d68}
+.cb-seg button.on[data-s="1"]{background:#FFF0B8;border-color:#C98A3A}
+.cb-seg button.on[data-s="0"]{background:#F9D4CB;border-color:#8E2B3C}
+.ex-i{appearance:none;-webkit-appearance:none;display:flex;gap:10px;align-items:flex-start;width:100%;text-align:left;border:2px solid #E6C6D1;border-radius:12px;background:#fff;padding:9px 12px;margin-top:7px;cursor:pointer;font:inherit;color:inherit;transition:border-color .25s,background .25s}
+.ex-i:hover{border-color:var(--gold)}
+.ex-i.done{border-color:#3c9d68;background:#F0FAF4}
+.ex-c{flex:none;width:24px;height:24px;border-radius:50%;border:2px solid #C9B3BB;font:700 13px/20px var(--mono);text-align:center;color:#fff;transition:background .25s,border-color .25s}
+.ex-i.done .ex-c{background:#3c9d68;border-color:#3c9d68}
+.ex-t b{display:block;font:600 13.5px var(--disp)}
+.ex-t span{font-size:12.5px;line-height:1.5;color:#4a3340}
+@media(max-width:560px){.sf-a{display:none}.sf-s{min-width:46%}}
+@media(prefers-reduced-motion:reduce){.og-b,.og-l,.og-p,.pl-c,.sf-s.run{animation:none!important}.sd-g{transition:none}}
 </style>
 </head>
 <body>
@@ -2177,10 +2268,168 @@ function SKVIS(){
 const t=SK.map((x,i)=>`<div class="sk-t" id="skt${i}"><button type="button" class="sk-h" onclick="skTog(${i})" aria-expanded="false">${ico(x[2],34)}<span>${x[1]}<small>ketuk untuk melihat ringkasan</small></span></button><div class="sk-b">${x[3]}<br><button type="button" onclick="csJump(${x[0]})">Lihat kartu ${x[0]}</button></div></div>`).join('');
 return `<div class="vz">${VZH('Uji ingatanmu <span class="vz-s">jawab dulu dalam hati, lalu ketuk kata kunci</span>')}<div class="sk-g">${t}</div><div class="tc-pre"><button type="button" onclick="skAll(true)">Buka semua</button><button type="button" onclick="skAll(false)">Tutup semua</button></div></div>`}
 
+
+/* --- Kartu 1: pengganti tabel, dua kartu perbandingan --- */
+function CMPCARDS(){
+return `<div class="cmp"><div class="cmp-c a"><div class="cmp-h">${ico('building',40)}<span><b>Corporate strategy</b><small>level grup</small></span></div><div class="cmp-l">Contoh keputusan</div><div class="cmp-q">Apakah grup perusahaan sebaiknya memiliki bisnis makanan, ritel, dan logistik?</div></div><div class="cmp-vs">vs</div><div class="cmp-c b"><div class="cmp-h">${ico('bullseye',40)}<span><b>Business strategy</b><small>level satu unit bisnis</small></span></div><div class="cmp-l">Contoh keputusan</div><div class="cmp-q">Bagaimana bisnis makanan bersaing: lewat harga murah, kualitas, atau segmen khusus?</div></div></div>`}
+
+
+/* --- Ganti tabel Sesi 8 dengan kartu, teks diambil dari tabel aslinya --- */
+function csParse(tw){const d=document.createElement('div');d.innerHTML=tw;const trs=[...d.querySelectorAll('tr')];return {hd:[...trs[0].children].map(e=>e.textContent.trim()),rows:trs.slice(1).map(r=>[...r.children].map(e=>e.innerHTML))}}
+function csRestyle(){
+const R=[
+['2\\. Diversification',tw=>{const {hd,rows}=csParse(tw);return `<div class="cmp">${rows.map((r,i)=>`<div class="cmp-c ${i?'p':'g'}"><div class="cmp-h">${ico(i?'globe':'sprout',38)}<span><b>${r[0]}</b></span></div><div class="cmp-l">${hd[1]}</div><div class="cmp-q">${r[1]}</div><div class="cmp-l">${hd[2]}</div><div class="cmp-q">${r[2]}</div></div>${i?'':'<div class="cmp-vs">vs</div>'}`).join('')}</div>`}],
+['4\\. Cara menilai',tw=>{const {hd,rows}=csParse(tw);return `<div class="stp">${rows.map((r,i)=>`<div class="stp-i"><span class="stp-n">${i+1}</span><div><div class="stp-t">${r[0]}</div><div class="stp-q">${r[1]}</div><div class="stp-r"><b>${hd[2]}:</b> ${r[2]}</div></div></div>`).join('')}</div>`}],
+['5\\. Portfolio',tw=>`<details class="fold"><summary>Lihat tabel lengkap kategori BCG</summary>${tw}</details>`],
+['7\\. Restrukturisasi',tw=>{const {hd,rows}=csParse(tw),ic=['sprout','arrow','tag','box'];return `<div class="opt">${rows.map((r,i)=>`<div class="opt-c" style="--c:${RS_R[i].c}"><div class="cmp-h">${ico(ic[i],34)}<b>${r[0]}</b></div><div class="cmp-l">${hd[1]}</div><div>${r[1]}</div><div class="cmp-l">${hd[2]}</div><div>${r[2]}</div></div>`).join('')}</div>`}],
+['8\\. Cara perusahaan',tw=>`<details class="fold"><summary>Lihat tabel lengkap tiga cara tumbuh</summary>${tw}</details>`],
+['(?:9\\. )?Contoh penerapan kasus',tw=>{const {hd,rows}=csParse(tw);return `<div class="stk">${rows.map(r=>`<div class="stk-c"><div class="stk-h">${r[0]}</div><div class="stk-g"><div><div class="cmp-l">${hd[1]}</div>${r[1]}</div><div><div class="cmp-l">${hd[2]}</div>${r[2]}</div></div></div>`).join('')}</div><!--ad-end-->`}]
+];
+R.forEach(([h,f])=>{const re=new RegExp('(<h2>'+h+'[^<]*</h2>[\\s\\S]*?)(<div class="tw">[\\s\\S]*?</table></div>)');
+ if(!re.test(CONTENT.s8.materi)){console.warn('Tabel tidak ketemu:'+h);return}
+ CONTENT.s8.materi=CONTENT.s8.materi.replace(re,(m,a,t)=>a+f(t))})}
+
 /* reset state tiap kali halaman dirender ulang */
 function csInit(){adOn=[1,1,1,1];adUpd();skAll(false);cpM='corp';cpU=0;cpV=1;cpUpd();syB=[0,0,0];syC=[0,0,0];syUpd();gtA=[1,1,1];gtTok++;rsA=[];rsRender();if(document.getElementById('bcb0'))bcReset();hlSet(12);grTok++;grReset()}
 (function(){const rm=renderMain;renderMain=function(){rm();csInit()}})();
 
+/* ===== Visual Sesi 9: desain organisasi dan pelaksanaan strategi ===== */
+
+/* --- Kartu 1: empat pilar desain organisasi --- */
+const PL=[['Pembagian kerja','Siapa mengerjakan tugas apa?','box'],['Wewenang','Siapa boleh memutuskan dan menyetujui?','shield'],['Koordinasi','Bagaimana bagian pemasaran, keuangan, operasi, dan SDM saling bertukar informasi?','mail'],['Akuntabilitas','Siapa bertanggung jawab atas hasil dan masalah?','flag']];
+function plPick(i){PL.forEach((_,k)=>{const e=document.getElementById('plc'+k);if(e)e.classList.toggle('on',k===i)});const v=document.getElementById('pl-v');if(!v)return;v.style.borderLeftColor='#C98A3A';v.innerHTML='<b>'+PL[i][0]+'</b><p>'+PL[i][1]+'</p>'}
+function PLVIS(){
+const cols=PL.map((p,i)=>{const x=36+i*150;return `<g class="pl-c" id="plc${i}" style="animation-delay:${.1+i*.1}s" ${csKey('plPick('+i+')')} aria-label="${p[0]}" onclick="plPick(${i})"><rect x="${x}" y="78" width="130" height="126" rx="12"/>${csIco(p[2],40,x+45,92)}<text class="cs-nl" x="${x+65}" y="160">${p[0]}</text><text class="cp-sm" x="${x+65}" y="182">ketuk</text></g>`}).join('');
+return `<div class="vz">${VZH('Empat pilar desain organisasi <span class="vz-s">ketuk pilar untuk melihat pertanyaannya</span>')}<svg class="cs-svg" viewBox="0 0 640 270" role="img" aria-label="Strategi ditopang empat pilar: pembagian kerja, wewenang, koordinasi, dan akuntabilitas"><rect class="pl-roof" x="20" y="14" width="600" height="52" rx="12"/><text class="cs-nl b" x="320" y="46">Strategi yang ingin dijalankan</text>${cols}<rect class="pl-base" x="20" y="214" width="600" height="42" rx="12"/><text class="cs-nl" x="320" y="240">Orang dan proses bekerja untuk menjalankan strategi</text></svg>
+<div class="tc-v" id="pl-v" style="border-left-color:#6b4a56"><b style="color:#6b4a56">Pilih satu pilar</b><p>Tujuan desain organisasi bukan sekadar membuat bagan, tetapi memastikan orang dan proses bekerja menjalankan strategi.</p></div></div>`}
+
+/* --- Gambar bagan struktur (dipakai kartu 2 dan 3) --- */
+function ogBx(x,y,w,h,t,c,d){return `<g class="og-b ${c||''}" style="animation-delay:${d||0}s"><rect x="${x}" y="${y}" width="${w}" height="${h}" rx="9"/><text x="${x+w/2}" y="${y+h/2+4.5}" text-anchor="middle">${t}</text></g>`}
+function ogEl(x1,y1,x2,y2,d){const m=Math.round((y1+y2)/2);return `<path class="og-l" style="animation-delay:${d||0}s" d="M${x1},${y1} V${m} H${x2} V${y2}"/>`}
+function ogSvg(t){let h='',n='';
+ if(t==='fn'){const xs=[40,188,336,484];h+=ogBx(240,12,160,40,'Pimpinan','top',0);['Pemasaran','Keuangan','Operasi','SDM'].forEach((a,i)=>{h+=ogEl(320,52,xs[i]+65,120,.15+i*.08)+ogBx(xs[i],120,130,42,a,'',.3+i*.08)});n='Orang dikelompokkan berdasarkan keahlian.'}
+ else if(t==='dv'){const xs=[20,230,440];h+=ogBx(240,12,160,40,'Pimpinan','top',0);['Divisi makanan','Divisi minuman','Kebutuhan rumah tangga'].forEach((a,i)=>{const cx=xs[i]+90;h+=ogEl(320,52,cx,92,.15+i*.1)+ogBx(xs[i],92,180,40,a,'',.25+i*.1)+ogEl(cx,132,xs[i]+46,164,.4+i*.1)+ogEl(cx,132,xs[i]+134,164,.4+i*.1)+ogBx(xs[i]+4,164,84,34,'Pemasaran','dup',.5+i*.1)+ogBx(xs[i]+92,164,84,34,'Operasi','dup',.5+i*.1)});n='Tiap divisi punya fungsi sendiri. Kotak kuning menandai fungsi yang bisa terduplikasi.'}
+ else if(t==='geo'){const xs=[20,230,440];h+=ogBx(240,12,160,40,'Pimpinan','top',0);['Manajer wilayah A','Manajer wilayah B','Manajer wilayah C'].forEach((a,i)=>{const cx=xs[i]+90;h+=ogEl(320,52,cx,98,.15+i*.1)+ogBx(xs[i],98,180,40,a,'',.25+i*.1)+ogEl(cx,138,cx,168,.4+i*.1)+ogBx(xs[i]+10,168,160,36,'Cabang dan pelanggan lokal','',.5+i*.1)});n='Manajer wilayah mengelola cabang dan pelanggan di daerahnya.'}
+ else if(t==='mx'){const cx=[235,385,535],cy=[88,148];['TI','Keuangan','Operasi'].forEach((a,i)=>{h+=ogBx(cx[i]-60,10,120,34,a,'top',i*.08)+`<path class="og-l" style="animation-delay:${.2+i*.05}s;stroke-dasharray:3 5" d="M${cx[i]},44 V${cy[1]}"/>`});['Proyek A','Proyek B'].forEach((a,j)=>{h+=ogBx(16,cy[j]-17,110,34,a,'',.1+j*.1)+`<path class="og-l" style="animation-delay:${.3+j*.05}s;stroke-dasharray:3 5" d="M126,${cy[j]} H${cx[2]+30}"/>`});
+  cy.forEach((y,j)=>cx.forEach((x,i)=>{h+=`<circle class="og-p${(j===0&&i===1)?' hot':''}" style="animation-delay:${.5+(j*3+i)*.05}s" cx="${x}" cy="${y}" r="11"/>`}));
+  h+=`<text class="og-n" x="${cx[1]+18}" y="${cy[0]-9}" text-anchor="start" style="fill:#7A394D;font-weight:700;paint-order:stroke;stroke:#FDF5F7;stroke-width:5px;stroke-linejoin:round">melapor ke dua manajer</text>`;n='Karyawan melapor ke manajer fungsi (kolom) dan manajer proyek (baris).'}
+ else{h+=ogBx(250,84,140,50,'Perusahaan','top',0)+ogBx(24,84,120,50,'Mitra A','out',.2)+ogBx(496,84,120,50,'Mitra B','out',.3)+ogBx(250,172,140,40,'Mitra C','out',.4)+`<line class="og-l dsh" x1="144" y1="109" x2="250" y2="109"/><line class="og-l dsh" x1="390" y1="109" x2="496" y2="109"/><line class="og-l dsh" x1="320" y1="134" x2="320" y2="172"/>`;n='Sebagian aktivitas dilakukan bersama mitra atau pihak luar (kotak biru).'}
+ return `<svg class="cs-svg" viewBox="0 0 640 244" role="img" aria-label="Bagan struktur organisasi">${h}<text class="og-n" x="320" y="236" text-anchor="middle">${n}</text></svg>`}
+
+/* --- Kartu 2: kondisi perusahaan dan struktur yang cocok --- */
+let og2R=[];
+const OG2_T=['fn','dv','geo','mx'],OG2_L=['Satu produk, sederhana','Banyak produk atau pelanggan','Banyak wilayah','Banyak proyek lintas keahlian'];
+function og2Det(i){const r=og2R[i];return '<b>'+r[0]+'</b><p><b>Kebutuhan organisasi:</b> '+r[1]+'</p><p><b>Contoh sederhana:</b> '+r[2]+'</p>'}
+function og2Pick(i){document.getElementById('og2-svg').innerHTML=ogSvg(OG2_T[i]);document.getElementById('og2-v').innerHTML=og2Det(i);OG2_L.forEach((_,k)=>document.getElementById('og2b'+k).classList.toggle('on',k===i))}
+function OG2VIS(rows){og2R=rows;
+return `<div class="vz">${VZH('Pilih kondisi perusahaan <span class="vz-s">lihat struktur yang cocok untuk kondisi itu</span>')}<div class="tc-pre">${OG2_L.map((l,i)=>`<button type="button" class="sc-btn${i?'':' on'}" id="og2b${i}" onclick="og2Pick(${i})">${l}</button>`).join('')}</div><div id="og2-svg">${ogSvg('fn')}</div><div class="tc-v" id="og2-v" style="border-left-color:#C98A3A">${og2Det(0)}</div><div class="ans-leg">Tidak ada satu bentuk struktur yang paling baik untuk semua perusahaan. Gambar bagan hanya ilustrasi sederhana dari contoh pada tabel.</div></div>`}
+
+/* --- Kartu 3: bentuk-bentuk struktur --- */
+let og3R=[];
+const OG3_T=['fn','dv','mx','nw'];
+function og3Det(i){const r=og3R[i];return '<b>'+r[0]+'</b><p><b>Cara kerja:</b> '+r[1]+'</p><div class="og-pro"><b>Kelebihan:</b> '+r[2]+'</div><div class="og-con"><b>Risiko atau kelemahan:</b> '+r[3]+'</div>'}
+function og3Pick(i){document.getElementById('og3-svg').innerHTML=ogSvg(OG3_T[i]);document.getElementById('og3-v').innerHTML=og3Det(i);og3R.forEach((_,k)=>document.getElementById('og3b'+k).classList.toggle('on',k===i))}
+function OG3VIS(rows){og3R=rows;
+return `<div class="vz">${VZH('Empat bentuk struktur <span class="vz-s">ketuk bentuk untuk melihat bagannya</span>')}<div class="tc-pre">${rows.map((r,i)=>`<button type="button" class="sc-btn${i?'':' on'}" id="og3b${i}" onclick="og3Pick(${i})">${r[0]}</button>`).join('')}</div><div id="og3-svg">${ogSvg('fn')}</div><div class="tc-v" id="og3-v" style="border-left-color:#C98A3A">${og3Det(0)}</div></div>`}
+
+/* --- Kartu 4: sentralisasi dan desentralisasi --- */
+let sdR=[];
+const SD_MIX='Dalam praktik, perusahaan tidak harus memilih salah satu secara mutlak. Misalnya, kebijakan keamanan data dan batas risiko dapat ditetapkan pusat, sedangkan promosi lokal dapat diputuskan manajer cabang sesuai anggaran.';
+function sdSet(v){const sl=document.getElementById('sd-sl');if(!sl)return;v=+v;sl.value=v;
+ document.getElementById('sd-hq').style.transform='translate(320px,66px) scale('+(0.62+(100-v)/100*0.75)+')';
+ [0,1,2].forEach(i=>document.getElementById('sd-br'+i).style.transform='translate('+(120+i*200)+'px,196px) scale('+(0.5+v/100*0.8)+')');
+ document.getElementById('sd-b1').style.width=(95-v*.85)+'%';document.getElementById('sd-b2').style.width=(15+v*.8)+'%';
+ let t,h,c;
+ if(v<=25){t='Sentralisasi kuat';c='#3a64a8';h='<p><b>'+sdR[0][0]+':</b> '+sdR[0][1]+'</p><p><b>Kelebihan:</b> '+sdR[1][1]+'</p><p><b>Kelemahan:</b> '+sdR[2][1]+'</p><p><b>Cocok ketika:</b> '+sdR[3][1]+'</p>'}
+ else if(v>=75){t='Desentralisasi kuat';c='#24704a';h='<p><b>'+sdR[0][0]+':</b> '+sdR[0][2]+'</p><p><b>Kelebihan:</b> '+sdR[1][2]+'</p><p><b>Kelemahan:</b> '+sdR[2][2]+'</p><p><b>Cocok ketika:</b> '+sdR[3][2]+'</p>'}
+ else{t='Campuran';c='#8a5a14';h='<p>'+SD_MIX+'</p>'}
+ const e=document.getElementById('sd-v');e.style.borderLeftColor=c;e.innerHTML='<b style="color:'+c+'">'+t+'</b>'+h}
+function SDVIS(rows){sdR=rows;
+const br=[0,1,2].map(i=>`<line class="og-l" style="animation:none" x1="320" y1="66" x2="${120+i*200}" y2="196"/>`).join('');
+const bn=[0,1,2].map(i=>`<g class="sd-g" id="sd-br${i}" style="transform:translate(${120+i*200}px,196px) scale(.9)"><circle r="30" fill="#E4F4EA"/><text class="cs-nl" y="5" style="font-size:12px">Cabang</text></g>`).join('');
+return `<div class="vz">${VZH('Siapa yang memutuskan? <span class="vz-s">geser dari terpusat ke terdesentralisasi</span>')}<svg class="cs-svg" viewBox="0 0 640 250" role="img" aria-label="Kantor pusat dan tiga cabang; ukuran lingkaran menunjukkan siapa yang memegang keputusan">${br}<g class="sd-g" id="sd-hq" style="transform:translate(320px,66px) scale(1.1)"><circle r="42" fill="#DCE8F8"/><text class="cs-nl b" y="5">Pusat</text></g>${bn}</svg>
+<input type="range" class="hl-sl" id="sd-sl" min="0" max="100" value="20" oninput="sdSet(this.value)" aria-label="Dari sentralisasi ke desentralisasi"><div class="hl-ends"><span>keputusan di pusat</span><span>keputusan di cabang</span></div>
+<div class="tc-pre"><span>Contoh posisi:</span><button type="button" onclick="sdSet(10)">Terpusat</button><button type="button" onclick="sdSet(50)">Campuran</button><button type="button" onclick="sdSet(90)">Terdesentralisasi</button></div>
+<div class="hl-m"><span>Konsistensi dan kontrol</span><div class="hl-bar"><i id="sd-b1" style="width:78%;background:#8FB4E8"></i></div></div>
+<div class="hl-m"><span>Kecepatan respons lokal</span><div class="hl-bar"><i id="sd-b2" style="width:31%;background:#6FCF97"></i></div></div>
+<div class="tc-v" id="sd-v" style="border-left-color:#3a64a8"></div>
+<div class="ans-leg">Ukuran lingkaran menunjukkan siapa yang memegang lebih banyak keputusan. Panjang bar hanya gambaran kualitatif untuk melihat pertukaran antara kontrol dan kecepatan, bukan angka dari materi.</div></div>`}
+
+/* --- Kartu 5: alur staffing --- */
+const SF=[['Perencanaan tenaga kerja','Tentukan jumlah dan jenis keterampilan yang dibutuhkan.','note'],['Rekrutmen dan seleksi','Cari orang yang sesuai dengan pekerjaan dan arah organisasi.','mail'],['Pelatihan dan pengembangan','Bantu karyawan menguasai proses, teknologi, atau tanggung jawab baru.','sprout'],['Penempatan peran','Tetapkan tanggung jawab dan wewenang secara jelas.','flag'],['Penilaian dan penghargaan','Hubungkan perilaku dan hasil kerja dengan tujuan strategi, tanpa mendorong tindakan yang tidak etis.','star']];
+let sfTok=0;
+function sfPick(i,run){SF.forEach((_,k)=>{const e=document.getElementById('sfs'+k);if(!e)return;e.classList.toggle('on',k===i);e.classList.remove('run');if(run&&k===i){void e.offsetWidth;e.classList.add('run')}});const v=document.getElementById('sf-v');if(!v)return;v.style.borderLeftColor='#C98A3A';v.innerHTML='<b>'+(i+1)+'. '+SF[i][0]+'</b><p>'+SF[i][1]+'</p>'}
+async function sfRun(){const tok=++sfTok;for(let i=0;i<SF.length;i++){sfPick(i,true);await sleepMs(1100);if(tok!==sfTok)return}}
+function SFVIS(){
+const st=SF.map((s,i)=>`<button type="button" class="sf-s${i?'':' on'}" id="sfs${i}" onclick="sfTok++;sfPick(${i},true)"><span class="sf-n">${i+1}</span>${ico(s[2],30)}${s[0]}</button>${i<SF.length-1?'<span class="sf-a">›</span>':''}`).join('');
+return `<div class="vz">${VZH('Alur staffing <span class="vz-s">ketuk langkah, atau putar alurnya</span>')}<div class="sf-row">${st}</div><div class="tc-pre"><button type="button" class="sc-btn on" onclick="sfRun()">▶ Putar alur</button></div><div class="tc-v" id="sf-v" style="border-left-color:#C98A3A"><b>1. ${SF[0][0]}</b><p>${SF[0][1]}</p></div></div>`}
+
+/* --- Kartu 6: kesenjangan kapabilitas --- */
+let cbR=[],cbS=[1,1,1,1];
+const CB_L=['Belum ada','Perlu ditingkatkan','Sudah kuat'],CB_W=[12,55,100],CB_C=['#E58A7B','#F0C36A','#6FCF97'];
+function cbUpd(){if(!document.getElementById('cb-v'))return;let gap=0;
+ cbR.forEach((_,i)=>{const s=cbS[i];if(s<2)gap++;[0,1,2].forEach(k=>document.getElementById('cbb'+i+k).classList.toggle('on',k===s));const b=document.getElementById('cbw'+i);b.style.width=CB_W[s]+'%';b.style.background=CB_C[s]});
+ const v=document.getElementById('cb-v');
+ if(!gap){v.style.borderLeftColor='#24704a';v.innerHTML='<b style="color:#24704a">Kapabilitas sudah memadai</b><p>Semua kapabilitas yang dibutuhkan sudah dimiliki, sehingga strategi lebih siap dijalankan.</p>'}
+ else{v.style.borderLeftColor='#8a5a14';v.innerHTML='<b style="color:#8a5a14">'+gap+' dari '+cbR.length+' kapabilitas masih perlu diperkuat</b><p>Manajemen perlu menilai apa yang sudah dimiliki, apa yang masih kurang, dan bagaimana kekurangan itu ditutup, misalnya melalui pelatihan, perekrutan, teknologi, atau kemitraan.</p>'}}
+function cbSet(i,s){cbS[i]=s;cbUpd()}
+function CBVIS(rows){cbR=rows;cbS=rows.map(()=>1);
+const r=rows.map((x,i)=>`<div class="cb-r"><b>${x[0]}</b><small>${x[1]} <i>Penting karena:</i> ${x[2]}</small><div class="cb-seg">${CB_L.map((l,k)=>`<button type="button" data-s="${k}" id="cbb${i}${k}" onclick="cbSet(${i},${k})"${k===1?' class="on"':''}>${l}</button>`).join('')}</div><div class="hl-bar"><i id="cbw${i}" style="width:55%;background:#F0C36A"></i></div></div>`).join('');
+return `<div class="vz">${VZH('Peta kesenjangan kapabilitas <span class="vz-s">nilai kondisi perusahaan pada tiap kapabilitas</span>')}${r}<div class="tc-v" id="cb-v" style="border-left-color:#8a5a14"></div><div class="ans-leg">Penilaian di sini hanya latihan: ubah sesuai kondisi perusahaan yang sedang kamu bayangkan.</div></div>`}
+
+/* --- Kartu 7: langkah pelaksanaan strategi --- */
+let exR=[],exD=[];
+function exUpd(){const b=document.getElementById('ex-b');if(!b)return;const n=exD.filter(x=>x).length;
+ exR.forEach((_,i)=>document.getElementById('exi'+i).classList.toggle('done',!!exD[i]));
+ b.style.width=(n/exR.length*100)+'%';b.style.background=n===exR.length?'#6FCF97':'#F0C36A';
+ const v=document.getElementById('ex-v');
+ if(n===exR.length){v.style.borderLeftColor='#24704a';v.innerHTML='<b style="color:#24704a">Semua pertanyaan sudah terjawab</b><p>Pelaksanaan punya dasar yang jelas. Tetap pantau kemajuan dan perbaiki rencana bila perlu.</p>'}
+ else{const nx=exD.findIndex(x=>!x);v.style.borderLeftColor='#8a5a14';v.innerHTML='<b style="color:#8a5a14">'+n+' dari '+exR.length+' langkah siap</b><p>Strategi yang dirumuskan dengan baik tetap bisa gagal jika pelaksanaannya buruk. Langkah berikutnya: <b>'+exR[nx][0]+'</b>.</p>'}}
+function exTog(i){exD[i]=exD[i]?0:1;exUpd()}
+function EXVIS(rows){exR=rows;exD=rows.map(()=>0);
+const s=rows.map((r,i)=>`<button type="button" class="ex-i" id="exi${i}" onclick="exTog(${i})"><span class="ex-c">✓</span><span class="ex-t"><b>${i+1}. ${r[0]}</b><span>${r[1]}</span></span></button>`).join('');
+return `<div class="vz">${VZH('Daftar periksa pelaksanaan <span class="vz-s">centang tiap langkah yang pertanyaannya sudah terjawab</span>')}${s}<div class="hl-m" style="grid-template-columns:90px 1fr"><span>Kesiapan</span><div class="hl-bar"><i id="ex-b" style="width:0%;background:#F0C36A"></i></div></div><div class="tc-v" id="ex-v" style="border-left-color:#8a5a14"></div></div>`}
+
+/* --- Kartu 8: kasus kanal penjualan daring --- */
+const OL=[['Struktur','Tentukan siapa yang bertanggung jawab atas kanal digital dan bagaimana timnya berkoordinasi dengan toko fisik.','building',320,43],['Wewenang','Pusat menetapkan standar keamanan, data pelanggan, dan kebijakan pengembalian; cabang dapat mengatur pelaksanaan lokal sesuai batas yang ditentukan.','shield',427,121],['Staffing','Siapkan kemampuan digital, analisis data, pemrosesan pesanan, dan layanan pelanggan.','sprout',386,247],['Kapabilitas','Integrasikan stok toko, gudang, pembayaran, pengiriman, dan data pelanggan.','truck',254,247],['Pelaksanaan','Tetapkan pemilik tugas, sumber daya, jadwal, komunikasi, dan cara memantau kendala.','flag',213,121]];
+let olOn=[0,0,0,0,0];
+function olUpd(i){const b=document.getElementById('ol-b');if(!b)return;const n=olOn.filter(x=>x).length;
+ OL.forEach((_,k)=>{document.getElementById('oln'+k).classList.toggle('off',!olOn[k]);document.getElementById('ols'+k).classList.toggle('on',!!olOn[k])});
+ b.style.width=(n/5*100)+'%';b.style.background=n===5?'#6FCF97':(n>0?'#F0C36A':'#E3C3CE');
+ const v=document.getElementById('ol-v');let t,d,c;
+ if(n===5){t='Siap dijalankan';d='Struktur, wewenang, orang, kapabilitas, dan pelaksanaan sudah disiapkan bersama teknologinya.';c='#24704a'}
+ else if(n===0){t='Baru teknologinya yang tersedia';d='Strategi digital tidak akan berhasil hanya karena teknologinya tersedia. Struktur, orang, kapabilitas, dan koordinasi harus ikut disiapkan.';c='#8E2B3C'}
+ else{t=n+' dari 5 elemen sudah disiapkan';d='Elemen yang belum disiapkan menjadi titik lemah pelaksanaan strategi digital.';c='#8a5a14'}
+ let extra='';if(i>=0){extra='<p><b>'+OL[i][0]+':</b> '+OL[i][1]+'</p>'}
+ v.style.borderLeftColor=c;v.innerHTML='<b style="color:'+c+'">'+t+'</b><p>'+d+'</p>'+extra}
+function olTog(i){olOn[i]=olOn[i]?0:1;olUpd(i)}
+function OLVIS(){olOn=[0,0,0,0,0];
+const sp=OL.map((a,i)=>`<line class="ad-sp" id="ols${i}" x1="${a[3]}" y1="${a[4]}" x2="320" y2="155"/>`).join('');
+const nd=OL.map((a,i)=>`<g class="ad-nd off" id="oln${i}" ${csKey('olTog('+i+')')} aria-label="${a[0]}" onclick="olTog(${i})"><circle cx="${a[3]}" cy="${a[4]}" r="34"/>${csIco(a[2],34,a[3]-17,a[4]-22)}<text class="cs-nl" x="${a[3]}" y="${a[4]+51}">${a[0]}</text></g>`).join('');
+return `<div class="vz">${VZH('Apa saja yang perlu disiapkan? <span class="vz-s">ketuk elemen untuk menyiapkannya</span>')}<svg class="cs-svg" viewBox="0 0 640 315" role="img" aria-label="Lima elemen yang perlu disiapkan untuk strategi penjualan daring selain teknologinya">${sp}<circle class="ad-core" cx="320" cy="155" r="52"/><text class="cs-nl b" x="320" y="150">Penjualan</text><text class="cs-nl b" x="320" y="168">daring</text>${nd}</svg>
+<div class="hl-m" style="grid-template-columns:130px 1fr"><span>Kesiapan strategi</span><div class="hl-bar"><i id="ol-b" style="width:0%;background:#E3C3CE"></i></div></div>
+<div class="tc-v" id="ol-v" style="border-left-color:#8E2B3C"><b style="color:#8E2B3C">Baru teknologinya yang tersedia</b><p>Strategi digital tidak akan berhasil hanya karena teknologinya tersedia. Struktur, orang, kapabilitas, dan koordinasi harus ikut disiapkan.</p></div></div>`}
+
+/* --- Ganti tabel Sesi 9: visual + tabel yang dilipat --- */
+function csRestyle9(){
+const fold=tw=>`<details class="fold"><summary>Lihat tabel lengkap</summary>${tw}</details>`;
+const R=[
+['2\\. Kesesuaian',tw=>OG2VIS(csParse(tw).rows)+fold(tw)],
+['3\\. Bentuk-bentuk',tw=>OG3VIS(csParse(tw).rows)+fold(tw)],
+['4\\. Sentralisasi',tw=>SDVIS(csParse(tw).rows)+fold(tw)],
+['6\\. Kapabilitas',tw=>CBVIS(csParse(tw).rows)+fold(tw)],
+['7\\. Dari strategi',tw=>EXVIS(csParse(tw).rows)+fold(tw)]];
+R.forEach(([h,f])=>{const re=new RegExp('(<h2>'+h+'[^<]*</h2>[\\s\\S]*?)(<div class="tw">[\\s\\S]*?</table></div>)');
+ if(!re.test(CONTENT.s9.materi)){console.warn('Tabel s9 tidak ketemu:'+h);return}
+ CONTENT.s9.materi=CONTENT.s9.materi.replace(re,(m,a,t)=>a+f(t))})}
+
+function s9Init(){sfTok++;if(document.getElementById('pl-v')){PL.forEach((_,k)=>document.getElementById('plc'+k).classList.remove('on'))}
+ if(document.getElementById('sd-sl'))sdSet(20);
+ if(document.getElementById('cb-v')){cbS=cbR.map(()=>1);cbUpd()}
+ if(document.getElementById('ex-b')){exD=exR.map(()=>0);exUpd()}
+ if(document.getElementById('ol-b')){olOn=[0,0,0,0,0];olUpd(-1)}
+ if(document.getElementById('sfs0'))sfPick(0,false)}
+(function(){const rm=renderMain;renderMain=function(){rm();s9Init()}})();
 
 (function(){
 const inj=(k,needle,html,mode)=>{const m=CONTENT[k].materi;
@@ -2188,6 +2437,8 @@ const inj=(k,needle,html,mode)=>{const m=CONTENT[k].materi;
  const i=m.indexOf('<h2>'+needle);if(i<0){console.warn('Visual tidak ketemu:',needle);return}
  let n=m.indexOf('<div class="card"><h2>',i+5);if(n<0)n=m.length;const e=m.lastIndexOf('</div>',n);CONTENT[k].materi=m.slice(0,e)+html+m.slice(e)};
 ['s8','s9','s10','s11','s12','s13'].forEach(k=>{if(Array.isArray(CONTENT[k].materi))CONTENT[k].materi=CONTENT[k].materi.join('')});
+CONTENT.s8.materi=CONTENT.s8.materi.replace(/(<h2>1\. Apa itu corporate strategy\?<\/h2>[\s\S]*?)<div class="tw">[\s\S]*?<\/table><\/div>/,(m,g)=>g+CMPCARDS());
+csRestyle();csRestyle9();
 inj('s1','Tiga level strategi',LVVIS());
 inj('s3','Linkages dalam value chain',WCVIS());
 inj('s2',"Porter's Five Forces",FFVIS());
@@ -2203,8 +2454,11 @@ inj('s8','melayani pelanggan penting.</p>',BCVIS(),'after');
 inj('s8','6. Melihat portofolio',HLVIS());
 inj('s8','7. Restrukturisasi',RSVIS());
 inj('s8','8. Cara perusahaan tumbuh',GRVIS());
-inj('s8','tidak terpenuhi.</td></tr></table></div>',ADVIS(),'after');
+inj('s8','<!--ad-end-->',ADVIS(),'after');
 inj('s8','10. Ringkasan inti',SKVIS());
+inj('s9','1. Apa itu desain organisasi',PLVIS());
+inj('s9','5. Staffing',SFVIS());
+inj('s9','8. Contoh kasus',OLVIS());
 })();
 (function(){
 const UTS={s1:['Strategic management vs operational management'],s2:['Macro-environment vs competitive environment','Pengantar SWOT','PEST / PESTLE analysis',"Porter's Five Forces"],s3:['Primary dan support activities','SWOT dan TOWS','Resource-based view: resources dan capabilities','VRIO framework (Barney)','Make-or-buy dan core competence'],s4:['Tiga generic strategies (Porter)','Differentiation strategy','Stuck in the middle, hybrid strategy, dan kritik generic strategies','Blue ocean strategy (Kim dan Mauborgne)'],s5:['Innovation dan timing: first mover, fast follower, late mover','Tipologi strategi inovasi (Freeman)','Transaction-cost analysis dan outsourcing'],s6:['Empat tipe international strategy','Entry mode strategies']};
